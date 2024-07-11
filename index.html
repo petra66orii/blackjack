@@ -21,13 +21,23 @@
         <button class="btn btn-stay" onclick="stay()">Stay</button>
     </div>
     <div class="betting-sums">
-        <button class="btn btn-one">$1</button>
-        <button class="btn btn-five">$5</button>
-        <button class="btn btn-ten">$10</button>
-        <button class="btn btn-twenty-five">$25</button>
-        <button class="btn btn-fifty">$50</button>
-        <button class="btn btn-hundred">$100</button>
-        <button class="btn btn-five-hundred">$500</button>
+        <button class="btn btn-one" onclick="addToBet(1)">+$1</button>
+        <button class="btn btn-one" onclick="removeFromBet(1)">-$1</button>
+        <button class="btn btn-five" onclick="addToBet(5)">+$5</button>
+        <button class="btn btn-five" onclick="removeFromBet(5)">-$5</button>
+        <button class="btn btn-ten" onclick="addToBet(10)">+$10</button>
+        <button class="btn btn-ten" onclick="removeFromBet(10)">=$10</button>
+        <button class="btn btn-twenty-five" onclick="addToBet(25)">+$25</button>
+        <button class="btn btn-twenty-five" onclick="removeFromBet(25)">-$25</button>
+        <button class="btn btn-fifty" onclick="addToBet(50)">+$50</button>
+        <button class="btn btn-fifty" onclick="removeFromBet(50)">-$50</button>
+        <button class="btn btn-hundred" onclick="addToBet(100)">+$100</button>
+        <button class="btn btn-hundred" onclick="removeFromBet(100)">-$100</button>
+        <button class="btn btn-five-hundred" onclick="addToBet(500)">+$500</button>
+        <button class="btn btn-five-hundred" onclick="removeFromBet(500)">-$500</button>
+    </div>
+    <div>
+        <button class="btn btn-deal" onclick="deal()">Deal</button>
     </div>
 
 

@@ -13,8 +13,8 @@
 </head>
 
 <body>
-    <header>
-        <h1 id="logo">Blackjack</h1>
+    <header id="logo">
+        <h1>Blackjack <i class="gg-card-spades"></i></h1>
     </header>
     <main>
         <div class="game-area"></div>
@@ -27,7 +27,9 @@
                 <button class="btn btn-stay" onclick="stay()">Stay</button>
             </div>
             <div class="betting-sums">
-                <button class="btn btn-one" onclick="addToBet(1)">+$1</button>
+                <label for="bet">Place your bet:</label>
+                <input type="number" name="bet" id="bet" min="1" max="500">
+                <!--<button class="btn btn-one" onclick="addToBet(1)">+$1</button>
                 <button class="btn btn-one" onclick="removeFromBet(1)">-$1</button>
                 <button class="btn btn-five" onclick="addToBet(5)">+$5</button>
                 <button class="btn btn-five" onclick="removeFromBet(5)">-$5</button>
@@ -40,7 +42,7 @@
                 <button class="btn btn-hundred" onclick="addToBet(100)">+$100</button>
                 <button class="btn btn-hundred" onclick="removeFromBet(100)">-$100</button>
                 <button class="btn btn-five-hundred" onclick="addToBet(500)">+$500</button>
-                <button class="btn btn-five-hundred" onclick="removeFromBet(500)">-$500</button>
+                <button class="btn btn-five-hundred" onclick="removeFromBet(500)">-$500</button>-->
             </div>
             <div>
                 <button class="btn btn-deal" onclick="deal()">Deal</button>

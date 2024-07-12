@@ -65,6 +65,7 @@ main {
     margin: 15px 20px;
     position: relative;
     float: left;
+    background-color: #58641d;
 }
 
 .buttons {
@@ -85,6 +86,15 @@ main {
 }*/
 
 .betting-sums {
+    background-color: #1a936f;
+    color: #f2f4f3;
+    margin: 5px;
+    border: 1px solid #f2f4f3;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#current-bet {
     background-color: #1a936f;
     color: #f2f4f3;
     margin: 5px;

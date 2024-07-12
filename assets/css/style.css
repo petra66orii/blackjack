@@ -1,26 +1,74 @@
+/* Google fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 /* Global style */
 * {
     margin: 0;
     border: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     background-color: rgb(17, 21, 22);
+    overflow-x: hidden;
 }
 
-/* Google fonts*/
-@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+header {
+    position: fixed;
+    background-color: antiquewhite;
+    padding: 0 1rem;
+    z-index: 999;
+    width: 100%;
 
-h1 {
+}
+
+#logo {
     font-family: 'Kanit', Verdana, Tahoma, sans-serif;
-    font-weight: lighter;
-    color:antiquewhite;
+    color:rgb(12, 11, 10);
 }
 
+main {
+    flex: 1 0 auto;
+    margin-top: 39px;
+    display: flex;
+}
+
+/* Game buttons */
 .btn {
     margin: 5px;
     padding: 5px;
     border: solid 1px;
     border-radius: 5px;
     background-color: rgb(50, 109, 23);
-    color:antiquewhite
+    color:antiquewhite;
+    position: relative;
+    float: right;
 }
+
+.game-area {
+    height: 80vh;
+    width: 65%;
+    border: 1px solid antiquewhite;
+    margin: 15px 20px;
+    position: relative;
+    float: left;
+}
+
+.buttons {
+    position: relative;
+    float: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 30%;
+    margin: 20px;
+}
+/*.how-to-play {
+    display: flex;
+    align-items: ;
+}*/

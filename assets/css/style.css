@@ -1,6 +1,9 @@
 /* Google fonts*/
 @import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+/* Import Blackjack icon 
+@import url('https://unpkg.com/css.gg@2.0.0/icons/css/card-spades.css');*/
+
 /* Global style */
 * {
     margin: 0;
@@ -12,23 +15,29 @@
 body {
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
-    background-color: rgb(17, 21, 22);
+    background-color: #0a0908;
     overflow-x: hidden;
 }
 
 header {
     position: fixed;
-    background-color: antiquewhite;
+    display: flex;
+    flex-direction: row;
+    background-color: #f2f4f3;
     padding: 0 1rem;
     z-index: 999;
     width: 100%;
 
 }
 
+h1 {
+    font-size: 150%;
+}
+
 #logo {
     font-family: 'Kanit', Verdana, Tahoma, sans-serif;
-    color:rgb(12, 11, 10);
+    color: #0a0908;
+    font-size: 100%;
 }
 
 main {
@@ -43,10 +52,10 @@ main {
     padding: 5px;
     border: solid 1px;
     border-radius: 5px;
-    background-color: rgb(50, 109, 23);
+    background-color: #1a936f;
     color:antiquewhite;
     position: relative;
-    float: right;
+    /*float: right;*/
 }
 
 .game-area {
@@ -68,7 +77,18 @@ main {
     width: 30%;
     margin: 20px;
 }
+
+
 /*.how-to-play {
     display: flex;
     align-items: ;
 }*/
+
+.betting-sums {
+    background-color: #1a936f;
+    color: #f2f4f3;
+    margin: 5px;
+    border: 1px solid #f2f4f3;
+    padding: 5px;
+    border-radius: 5px;
+}

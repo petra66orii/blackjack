@@ -6,6 +6,18 @@ document.addEventListener("DOMContentLoaded", function() {
     let betInput = document.getElementById('bet')
 })
 
+function createDeck() {
+
+}
+
+function shuffleDeck() {
+
+}
+
+function startGame() {
+
+}
+
 function deal() {
     
 }

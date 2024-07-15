@@ -17,7 +17,10 @@
         <h1>Blackjack <i class="gg-card-spades"></i></h1>
     </header>
     <main>
-        <div class="game-area"></div>
+        <div class="game-area">
+            <div class="deck"></div>
+        </div>
+        <div class="amount">Amount Available: <span>0$</span></div>
         <div class="buttons">
             <div class="hit-or-stay">
                 <button class="btn btn-hit" onclick="hitMe()">Hit Me</button>
@@ -32,7 +35,6 @@
                 <button class="btn btn-deal" onclick="deal()">Deal</button>
             </div>
         </div>
-        <div class="amount"></div>
     </main>
     <footer>
         <button class="btn btn-rules">How to Play</button>

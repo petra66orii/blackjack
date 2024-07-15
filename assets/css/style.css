@@ -4,7 +4,7 @@
 /* Import Blackjack icon 
 @import url('https://unpkg.com/css.gg@2.0.0/icons/css/card-spades.css');*/
 
-/* Global style */
+/* General styles */
 * {
     margin: 0;
     border: 0;
@@ -20,6 +20,7 @@ body {
     overflow-x: hidden;
 }
 
+/* Header */
 header {
     position: fixed;
     display: flex;
@@ -41,6 +42,7 @@ h1 {
     font-size: 100%;
 }
 
+/* Main content */
 main {
     flex: 1 0 auto;
     margin-top: 39px;
@@ -48,6 +50,7 @@ main {
     flex-direction: column;
 }
 
+/* Main game area */
 .game-area {
     height: 50vh;
     width: 90%;
@@ -112,6 +115,7 @@ border-radius: 5px;
     border-radius: 5px;
 }
 
+/* Footer */
 footer {
     position: fixed;
     bottom: 0;
@@ -123,6 +127,7 @@ footer {
     height: 40px;
 }
 
+/* How to play button */
 .btn-rules {
     background-color: #9A031E;
 }

@@ -48,6 +48,27 @@ main {
     flex-direction: column;
 }
 
+.game-area {
+    height: 50vh;
+    width: 90%;
+    border: 1px solid antiquewhite;
+    margin: 15px 20px;
+    position: relative;
+    /*float: left;*/
+    background-color: #58641d;
+    align-self: center;
+}
+
+.amount {
+padding: 5px;
+background-color: #9a031e;
+width: fit-content;
+align-self: center;
+color: #f2f4f3;
+border: 1px solid #f2f3f4;
+border-radius: 5px;
+}
+
 /* Game buttons */
 .btn {
     margin: 5px;
@@ -58,17 +79,6 @@ main {
     color: antiquewhite;
     position: relative;
     /*float: right;*/
-}
-
-.game-area {
-    height: 50vh;
-    width: 90%;
-    border: 1px solid antiquewhite;
-    margin: 15px 20px;
-    position: relative;
-    /*float: left;*/
-    background-color: #58641d;
-    align-self: center;
 }
 
 .buttons {

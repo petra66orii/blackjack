@@ -11,9 +11,10 @@
     <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <!--Import W3.CSS framework, it's put before the custom CSS so it doesn't override style.css-->
+    <!--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">-->
     <link rel="stylesheet" href="assets/css/style.css">
-    <!--Import W3.CSS framework-->
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 </head>
 
 <body>
@@ -41,6 +42,23 @@
             <div id="current-bet">Current bet: <span>0$</span></div>
             <div>
                 <button class="btn btn-deal" onclick="deal()">Deal</button>
+            </div>
+        </div>
+        <div class="modal-container">
+            <div class="modal-header">
+                <span class="close-x">&times;</span>
+                <h2>How to Play Blackjack</h2>
+            </div>
+            <div class="modal-content">
+                <p>Blackjack is a popular card game where the goal is to have a hand value closer to 21 than the dealer
+                    without exceeding 21. Each player is dealt two cards, typically one face-up and one face-down, while
+                    the dealer receives one face-up card. Players can choose to "hit" (draw additional cards) or "stay"
+                    (keep their current hand) to try to reach 21. Number cards (2-10) are worth their face value, face
+                    cards (Jack, Queen, King) are worth 10 points, and Aces can be worth either 1 or 11 points. If a
+                    player's hand exceeds 21, they "bust" and lose the game. The dealer must hit until their hand totals
+                    17 or more. If the dealer busts, all remaining players win. If neither busts, the hand closest to 21
+                    wins. A "blackjack," an Ace combined with a 10-value card, is the highest hand, typically resulting
+                    in an automatic win if it is in the player's initial deal.</p>
             </div>
         </div>
     </main>

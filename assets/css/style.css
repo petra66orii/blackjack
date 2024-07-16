@@ -1,8 +1,8 @@
 /* Google fonts*/
 @import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-/* Import Blackjack icon 
-@import url('https://unpkg.com/css.gg@2.0.0/icons/css/card-spades.css');*/
+/* Import Blackjack icon */
+@import url('https://unpkg.com/css.gg@2.0.0/icons/css/card-spades.css');
 
 /* General styles */
 * {
@@ -34,12 +34,24 @@ header {
 
 h1 {
     font-size: 150%;
+    /* To fix a bug where the icon was under the text */
+    display: inline-flex;
+    align-items: center;
 }
 
 #logo {
     font-family: 'Kanit', Verdana, Tahoma, sans-serif;
     color: #0a0908;
     font-size: 100%;
+    /* To bring the logo to the center of the header */
+    display: inline-flex;
+    justify-content: center;
+}
+
+.gg-card-spades {
+    font-size: 90%;
+    margin: 4px;
+    padding: 3px;
 }
 
 /* Main content */

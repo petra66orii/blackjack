@@ -32,8 +32,8 @@ function stay() {
 
 // This section of code opens and closes the modal containing the game rules - credits to W3Schools
 // Get the modal and the button
-let modal = document.getElementsByClassName('modal-container')
-let buttonRules = document.getElementsByClassName('btn-rules')
+let modal = document.getElementsByClassName('modal-container')[0]
+let buttonRules = document.getElementsByClassName('btn-rules')[0]
 
 // Get the span that closes the modal
 let closeX = document.getElementsByClassName('close-x')[0]

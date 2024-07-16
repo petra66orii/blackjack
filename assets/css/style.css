@@ -70,7 +70,7 @@ main {
     margin: 15px 20px;
     position: relative;
     /*float: left;*/
-    background-color: #58641d;
+    background-color: #1a936f;
     align-self: center;
 }
 
@@ -82,6 +82,7 @@ align-self: center;
 color: #f2f4f3;
 border: 1px solid #f2f3f4;
 border-radius: 5px;
+font-family: 'Kanit', Verdana, Tahoma, sans-serif;
 }
 
 /* Game buttons */
@@ -93,6 +94,7 @@ border-radius: 5px;
     background-color: #1a936f;
     color: antiquewhite;
     position: relative;
+    font-family: 'Kanit', Verdana, Tahoma, sans-serif;
     /*float: right;*/
 }
 
@@ -127,6 +129,10 @@ border-radius: 5px;
     border-radius: 5px;
 }
 
+.bets {
+    font-family: 'Kanit', Verdana, Tahoma, sans-serif;
+}
+
 /* Footer */
 footer {
     position: fixed;
@@ -159,17 +165,35 @@ footer {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
+.modal-content h2 {
+    padding-bottom: 10px;
+    color: #f2f4f3;
+    background-color: #9A031E;
+    text-align: center;
+    font-family: 'Kanit', Verdana, Tahoma, sans-serif;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.modal-content p {
+    padding: 10px;
+}
+
 .modal-content {
     background-color: #f2f4f3;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #f2f4f3;
     width: 80%;
+    font-family: 'Kanit', Verdana, Tahoma, sans-serif;
 }
 
 .close-x {
     color: #0a0908;
     float: right;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: bold;
+    position: relative;
+    bottom: 35px;
+    left: 15px;
 }

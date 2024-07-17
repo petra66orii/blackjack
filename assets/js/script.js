@@ -49,6 +49,7 @@ function drawDeck() {
             return response.json()
         })
         .then(data => {
+console.log('Drawn card data:', data)
             return data.cards[0]
         })
         .catch(error => {

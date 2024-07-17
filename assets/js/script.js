@@ -2,12 +2,33 @@ document.addEventListener("DOMContentLoaded", function() {
     let currentBet = 0;
     let playerHand = []
     let dealerHand = []
-    let deck = []
+    let deckId = ''
     let betInput = document.getElementById('bet')
+
+    createDeck()
 })
 
+/* This function will create a deck by making an API request using the deck of cards API.
+ * Website is linked in the README.md. Also this snippet of code was from an article on how 
+ * to call an API in JavaScript from FreeCodeCamp.org
+ * The article is also linked in the README.md
+ */
+ 
 function createDeck() {
-
+    let apiUrl = 'https://www.deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6'
+    fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response has problems')
+            }
+            return response.json
+        })
+        .then(data => {
+            console.log(data)
+        })
+        .catch(error => {
+            console.log('Error creating deck', error)
+        })
 }
 
 function shuffleDeck() {

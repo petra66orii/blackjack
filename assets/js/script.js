@@ -70,17 +70,24 @@ return;
     playerHand = []
     dealerHand = []
 
+try {
     // Each player gets their card dealt
-    let playerCard1 = drawDeck()
-    let playerCard2 = drawDeck()
-    let dealerCard1 = drawDeck()
-    let dealerCard2 = drawDeck()
+    let playerCard1 = await drawDeck()
+    let playerCard2 = await drawDeck()
+    let dealerCard1 = await drawDeck()
+    let dealerCard2 = await drawDeck()
 
     // Push the cards onto their respective arrays
-    playerHand.push(playerCard1, playerCard2)
-    dealerHand.push(dealerCard1, dealerCard2)
+    playerHand.push(playerCard1, playerCard2);
+    dealerHand.push(dealerCard1, dealerCard2);
+
+        console.log('Player hand', playerHand);
+        console.log('Dealer hand', dealerHand);
 
     displayHands();
+} catch (error) {
+        console.log('Error dealing cards', error)
+    }
 }
 
 function displayHands() {

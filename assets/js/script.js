@@ -15,24 +15,41 @@ document.addEventListener("DOMContentLoaded", function() {
  */
  
 function createDeck() {
-    let apiUrl = 'https://www.deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6'
-    fetch(apiUrl)
+    let newDeck = 'https://www.deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6'
+    fetch(newDeck)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response has problems')
             }
-            return response.json
+            return response.json()
         })
         .then(data => {
-            console.log(data)
+            deckId = data.deck_id;
+            console.log(`Deck ID: ${deckId}`)
         })
         .catch(error => {
             console.log('Error creating deck', error)
         })
 }
 
-function shuffleDeck() {
-
+/* This function will draw two cards for both the player and the dealer (PC) by making an API
+ * request using the same API from above. 
+ */
+function drawDeck() {
+    let drawCard = `https://www.deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`
+    fetch(drawCard)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response has problems')
+            }
+            return response.json()
+        })
+        .then(data => {
+            return data.cards[0]
+        })
+        .catch(error => {
+            console.log('Error drawing card', error)
+        })
 }
 
 function startGame() {

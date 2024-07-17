@@ -15,9 +15,9 @@ document.addEventListener("DOMContentLoaded", function() {
  */
  
 function createDeck() {
-// Define the API URL
+    // Define the API URL
     let newDeck = 'https://www.deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6'
-// Make a GET request - if the response doesn't work, it throws an error; if it does work, it will
+    // Make a GET request - if the response doesn't work, it throws an error; if it does work, it will
     // parse the data using the response.json() method
     fetch(newDeck)
         .then(response => {
@@ -26,7 +26,7 @@ function createDeck() {
             }
             return response.json()
         })
-// Finally, the data is logged to the console, or else logs an error
+        // Finally, the data is logged to the console, or else logs an error
         .then(data => {
             deckId = data.deck_id;
             console.log(`Deck ID: ${deckId}`)
@@ -56,12 +56,33 @@ function drawDeck() {
         })
 }
 
-function startGame() {
+/* This function will deal and output two cards for both players. Credits are due to W3Schools and their
+ * tutorial on async and await functions.
+ */
+async function deal() {
+    if (!deckId) {
+        console.log('Deck ID is not set. Please create a deck first.')
+    }
 
+    // Start the game with an empty array
+    playerHand = []
+    dealerHand = []
+
+    // Each player gets their card dealt
+    let playerCard1 = drawDeck()
+    let playerCard2 = drawDeck()
+    let dealerCard1 = drawDeck()
+    let dealerCard2 = drawDeck()
+
+    // Push the cards onto their respective arrays
+    playerHand.push(playerCard1, playerCard2)
+    dealerHand.push(dealerCard1, dealerCard2)
+
+    displayHands();
 }
 
-function deal() {
-    
+function displayHands() {
+
 }
 
 function hitMe() {

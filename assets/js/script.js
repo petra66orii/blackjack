@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
  * to call an API in JavaScript from FreeCodeCamp.org
  * The article is also linked in the README.md
  */
- 
+
 function createDeck() {
     // Define the API URL
     let newDeck = 'https://www.deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6'
@@ -49,7 +49,7 @@ function drawDeck() {
             return response.json()
         })
         .then(data => {
-console.log('Drawn card data:', data)
+            console.log('Drawn card data:', data)
             return data.cards[0]
         })
         .catch(error => {
@@ -63,35 +63,61 @@ console.log('Drawn card data:', data)
 async function deal() {
     if (!deckId) {
         console.log('Deck ID is not set. Please create a deck first.')
-return;
+        return;
     }
 
     // Start the game with an empty array
     playerHand = []
     dealerHand = []
 
-try {
-    // Each player gets their card dealt
-    let playerCard1 = await drawDeck()
-    let playerCard2 = await drawDeck()
-    let dealerCard1 = await drawDeck()
-    let dealerCard2 = await drawDeck()
+    try {
+        // Each player gets their card dealt
+        let playerCard1 = await drawDeck()
+        let playerCard2 = await drawDeck()
+        let dealerCard1 = await drawDeck()
+        let dealerCard2 = await drawDeck()
 
-    // Push the cards onto their respective arrays
-    playerHand.push(playerCard1, playerCard2);
-    dealerHand.push(dealerCard1, dealerCard2);
+        // Push the cards onto their respective arrays
+        playerHand.push(playerCard1, playerCard2);
+        dealerHand.push(dealerCard1, dealerCard2);
 
         console.log('Player hand', playerHand);
         console.log('Dealer hand', dealerHand);
 
-    displayHands();
-} catch (error) {
+        displayHands();
+    } catch (error) {
         console.log('Error dealing cards', error)
     }
 }
 
 function displayHands() {
+    // Connect the HTML elements to variables in script
+    let playerHandDiv = document.querySelector('.game-area .player-area')
+    let dealerHandDiv = document.querySelector('.game-area .dealer-area')
 
+    // Start with an empty innerHTML
+    playerHandDiv.innerHTML = '';
+    dealerHandDiv.innerHTML = '';
+
+    // Use forEach() method and an arrow function to display the cards - 
+    // credits to MDN Web Docs and W3Schools
+    playerHand.forEach(card => {
+        console.log('Player card', card)
+        if (card && card.image) {
+            let cardImg = document.createElement('img')
+            cardImg.src = card.image
+            playerHandDiv.appendChild(cardImg)
+        }
+    })
+
+    dealerHand.forEach(card => {
+        console.log('Dealer card', card)
+        if (card && card.image) {
+            let cardImg = document.createElement('img')
+            cardImg.src = card.image
+            dealerHandDiv.appendChild(cardImg)
+        }
+    })
 }
 
 function hitMe() {
@@ -121,7 +147,7 @@ function closeModal() {
 }
 
 // Also, function that closes the modal when you click outside the modal as well
-window.onclick = function(event) {
+window.onclick = function (event) {
     if (event.target === modal) {
         modal.style.display = 'none'
     }

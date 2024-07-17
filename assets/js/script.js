@@ -63,6 +63,7 @@ console.log('Drawn card data:', data)
 async function deal() {
     if (!deckId) {
         console.log('Deck ID is not set. Please create a deck first.')
+return;
     }
 
     // Start the game with an empty array

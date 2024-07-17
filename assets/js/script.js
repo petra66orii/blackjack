@@ -15,7 +15,10 @@ document.addEventListener("DOMContentLoaded", function() {
  */
  
 function createDeck() {
+// Define the API URL
     let newDeck = 'https://www.deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6'
+// Make a GET request - if the response doesn't work, it throws an error; if it does work, it will
+    // parse the data using the response.json() method
     fetch(newDeck)
         .then(response => {
             if (!response.ok) {
@@ -23,6 +26,7 @@ function createDeck() {
             }
             return response.json()
         })
+// Finally, the data is logged to the console, or else logs an error
         .then(data => {
             deckId = data.deck_id;
             console.log(`Deck ID: ${deckId}`)

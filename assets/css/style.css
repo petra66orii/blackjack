@@ -85,6 +85,18 @@ main {
     float: left;
     align-self: center;
     margin-right: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.player-card1 {
+    width: 45%;
+    height: auto;
+}
+
+.player-card2 {
+    width: 45%;
+    height: auto;
 }
 
 .dealer-area {
@@ -95,6 +107,18 @@ main {
     float: right;
     align-self: center;
     margin-left: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.dealer-card1 {
+    width: 45%;
+    height: auto;
+}
+
+.dealer-card2 {
+    width: 45%;
+    height: auto;
 }
 
 .amount {

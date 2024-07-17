@@ -72,6 +72,29 @@ main {
     /*float: left;*/
     background-color: #1a936f;
     align-self: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.player-area {
+    width: 45%;
+    height: 50vh;
+    border: 1px solid #0a0908;
+    position: inherit;
+    float: left;
+    align-self: center;
+    margin-right: 5px;
+}
+
+.dealer-area {
+    width: 45%;
+    height: 50vh;
+    border: 1px solid #0a0908;
+    position: inherit;
+    float: right;
+    align-self: center;
+    margin-left: 5px;
 }
 
 .amount {

@@ -1,5 +1,3 @@
-document.addEventListener("DOMContentLoaded", function() {
-    let currentBet = 0;
     let playerHand = []
     let dealerHand = []
     let deckId = ''

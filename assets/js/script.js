@@ -83,6 +83,17 @@ function drawDeck() {
         })
 }
 
+function displayCard(card, classArea) {
+
+    const container = document.querySelector(classArea)
+    const cardImg = document.createElement('img')
+    cardImg.src = card.image
+    cardImg.alt = `${card.value} of ${card.suit}`
+    container.appendChild(cardImg)
+}
+
+
+
 /* This function will deal and output two cards for both players. Credits are due to W3Schools and their
  * tutorial on async and await functions.
  */
@@ -107,10 +118,18 @@ async function deal() {
         playerHand.push(playerCard1, playerCard2);
         dealerHand.push(dealerCard1, dealerCard2);
 
+// Log the cards to the console
         console.log('Player hand', playerHand);
         console.log('Dealer hand', dealerHand);
 
-        displayHands();
+        const playerContainer = document.querySelector('.player-area')
+        const dealerContainer = document.querySelector('.dealer-area')
+
+        playerContainer.innerHTML = ''
+        dealerContainer.innerHTML = ''
+
+        playerHand.forEach(card => displayCard(card, '.player-area'))
+        dealerHand.forEach(card => displayCard(card, '.dealer-area'))
     } catch (error) {
         console.log('Error dealing cards', error)
     }

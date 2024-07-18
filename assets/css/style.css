@@ -87,16 +87,11 @@ main {
     margin-right: 5px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
-.player-card1 {
+.player-area img {
     width: 45%;
-    height: auto;
-}
-
-.player-card2 {
-    width: 45%;
-    height: auto;
 }
 
 .dealer-area {
@@ -109,17 +104,13 @@ main {
     margin-left: 5px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
-.dealer-card1 {
+.dealer-area img {
     width: 45%;
-    height: auto;
 }
 
-.dealer-card2 {
-    width: 45%;
-    height: auto;
-}
 
 .amount {
 padding: 5px;

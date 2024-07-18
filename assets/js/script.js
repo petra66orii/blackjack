@@ -1,6 +1,6 @@
-    let playerHand = []
-    let dealerHand = []
-    let deckId = ''
+let playerHand = []
+let dealerHand = []
+let deckId = ''
 
 document.addEventListener("DOMContentLoaded", function () {
     let currentBet = 0;

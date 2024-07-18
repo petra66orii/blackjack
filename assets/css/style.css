@@ -65,12 +65,11 @@ main {
 
 /* Main game area */
 .game-area {
-    height: 50vh;
+    height: 60%;
     width: 90%;
     border: 1px solid antiquewhite;
     margin: 15px 20px;
     position: relative;
-    /*float: left;*/
     background-color: #1a936f;
     align-self: center;
     display: flex;
@@ -79,10 +78,8 @@ main {
 }
 
 .player-area {
-    width: 45%;
-    height: 50vh;
-    border: 1px solid #0a0908;
-    position: inherit;
+    width: 8rem;
+    height: 20rem;
     float: left;
     align-self: center;
     margin-right: 5px;
@@ -92,14 +89,15 @@ main {
 }
 
 .player-area img {
-    width: 45%;
+    width: 6rem;
+    height: 9rem;
+    position: relative;
+    margin: 9px;
 }
 
 .dealer-area {
-    width: 45%;
-    height: 50vh;
-    border: 1px solid #0a0908;
-    position: inherit;
+    width: 8rem;
+    height: 20rem;
     float: right;
     align-self: center;
     margin-left: 5px;
@@ -109,7 +107,10 @@ main {
 }
 
 .dealer-area img {
-    width: 45%;
+    width: 6rem;
+    height: 9rem;
+    position: relative;
+    margin: 9px;
 }
 
 
@@ -122,6 +123,7 @@ color: #f2f4f3;
 border: 1px solid #f2f3f4;
 border-radius: 5px;
 font-family: 'Kanit', Verdana, Tahoma, sans-serif;
+font-size: small;
 }
 
 /* Game buttons */
@@ -139,7 +141,6 @@ font-family: 'Kanit', Verdana, Tahoma, sans-serif;
 
 .buttons {
     position: relative;
-    /*float: right;*/
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -147,16 +148,38 @@ font-family: 'Kanit', Verdana, Tahoma, sans-serif;
     align-self: center;
     align-content: center;
     width: 80%;
-    margin: 20px;
+    margin: 10px;
+    align-items: center;
+}
+
+.hit-or-stay {
+    padding: 3px;
+    position: relative;
+    bottom: 5px;
+}
+
+.btn-hit, .btn-stay {
+    font-size: 100%;
 }
 
 .betting-sums {
     background-color: #9A031E;
     color: #f2f4f3;
-    margin: 5px;
+    margin: 3px;
     border: 1px solid #f2f4f3;
-    padding: 5px;
+    padding: 3px;
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    bottom: 5px;
+}
+
+.betting-sums input {
+    text-align: center;
+    border-radius: 5px;
+    width: 40%;
 }
 
 #current-bet {
@@ -170,6 +193,15 @@ font-family: 'Kanit', Verdana, Tahoma, sans-serif;
 
 .bets {
     font-family: 'Kanit', Verdana, Tahoma, sans-serif;
+}
+
+.btn-deal {
+    font-size: 100%;
+}
+
+main .btn:hover {
+    background-color: #134e3c;
+    transition: 0.4s;
 }
 
 /* Footer */
@@ -187,6 +219,11 @@ footer {
 /* How to play button */
 .btn-rules {
     background-color: #9A031E;
+}
+
+.btn-rules:hover {
+    background-color: #550413;
+    transition: 0.4s;
 }
 
 /* Modal container styling */
@@ -235,4 +272,9 @@ footer {
     position: relative;
     bottom: 35px;
     left: 15px;
+}
+
+.close-x:hover {
+    color: #9A031E;
+    transition: 0.4s;
 }

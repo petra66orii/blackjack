@@ -116,35 +116,6 @@ async function deal() {
     }
 }
 
-function displayHands() {
-    // Connect the HTML elements to variables in script
-    let playerHandDiv = document.querySelector('.game-area .player-area')
-    let dealerHandDiv = document.querySelector('.game-area .dealer-area')
-
-    // Start with an empty innerHTML
-    playerHandDiv.innerHTML = '';
-    dealerHandDiv.innerHTML = '';
-
-    // Use forEach() method and an arrow function to display the cards - 
-    // credits to MDN Web Docs and W3Schools
-    playerHand.forEach(card => {
-        console.log('Player card', card)
-        if (card && card.image) {
-            let cardImg = document.createElement('img')
-            cardImg.src = card.image
-            playerHandDiv.appendChild(cardImg)
-        }
-    })
-
-    dealerHand.forEach(card => {
-        console.log('Dealer card', card)
-        if (card && card.image) {
-            let cardImg = document.createElement('img')
-            cardImg.src = card.image
-            dealerHandDiv.appendChild(cardImg)
-        }
-    })
-}
 
 function hitMe() {
 

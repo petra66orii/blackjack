@@ -58,6 +58,7 @@ h1 {
 main {
     flex: 1 0 auto;
     margin-top: 39px;
+    margin-bottom: 40px;
     display: flex;
     flex-direction: column;
 }
@@ -150,7 +151,7 @@ font-family: 'Kanit', Verdana, Tahoma, sans-serif;
 }
 
 .betting-sums {
-    background-color: #1a936f;
+    background-color: #9A031E;
     color: #f2f4f3;
     margin: 5px;
     border: 1px solid #f2f4f3;

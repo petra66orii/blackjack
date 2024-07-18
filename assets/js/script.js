@@ -63,24 +63,21 @@ function createDeck() {
 }
 
 /* This function will draw two cards for both the player and the dealer (PC) by making an API
- * request using the same API from above. 
+ * request using the same API from above. Credits are in the README.md
  */
-function drawDeck() {
+async function drawDeck() {
     let drawCard = `https://www.deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`
-    fetch(drawCard)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response has problems')
-            }
-            return response.json()
-        })
-        .then(data => {
-            console.log('Drawn card data:', data)
-            return data.cards[0]
-        })
-        .catch(error => {
-            console.log('Error drawing card', error)
-        })
+    try {
+        const response = await fetch(drawCard)
+        if (!response.ok) {
+            throw new Error('Network response has problems')
+        }
+        const data = await response.json()
+        console.log('Drawn card data:', data)
+        return data.cards[0]
+    } catch (error) {
+        console.log('Error drawing card', error)
+    }
 }
 
 function displayCard(card, classArea) {

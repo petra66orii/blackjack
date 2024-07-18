@@ -29,7 +29,7 @@
             <div class="dealer-area">
             </div>
         </div>
-        <div class="amount">Amount Available: <span>0$</span></div>
+        <div class="amount">Amount Available: <span id="max-amount">100</span>$</div>
         <!--Buttons Area-->
         <div class="buttons">
             <div class="hit-or-stay">
@@ -37,10 +37,11 @@
                 <button class="btn btn-stay" onclick="stay()">Stay</button>
             </div>
             <div class="betting-sums">
-                <label for="bet" class="bets"">Place your bet:</label>
-                <input type="number" name="bet" id="bet" min="1" max="500">
+                <label for="bet" class="bets">Bet:</label>
+                <input type="number" name="bet" id="bet">
+                <button class="btn btn-place-bet" onclick="updateBet()">Place Bet</button>
             </div>
-            <div id="current-bet" class="bets">Current bet: <span>0$</span></div>
+            <div id="current-bet" class="bets">Current bet: <span id="bet-amount">0</span>$</div>
             <div>
                 <button class="btn btn-deal" onclick="deal()">Deal</button>
             </div>

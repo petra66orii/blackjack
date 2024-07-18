@@ -3,43 +3,26 @@ let dealerHand = []
 let deckId = ''
 
 document.addEventListener("DOMContentLoaded", function () {
-    let currentBet = 0;
-    let betInput = document.getElementById('bet')
 
-    createDeck()
+    document.getElementById('bet').value = ''
+    document.getElementById('bet').focus()
 
-    // This section of code opens and closes the modal containing the game rules - credits to W3Schools
-    // Get the modal and the button
-    let modal = document.getElementsByClassName('modal-container')[0]
-    let buttonRules = document.getElementsByClassName('btn-rules')[0]
-
-    // Get the span that closes the modal
-    let closeX = document.getElementsByClassName('close-x')[0]
-
-    // Function that opens the modal
-    function openModal() {
-        modal.style.display = 'block'
-    }
-
-    // Function that closes the modal
-    function closeModal() {
-        modal.style.display = 'none'
-    }
-
-    // Also, function that closes the modal when you click outside the modal as well
-    window.onclick = function (event) {
-        if (event.target === modal) {
-            modal.style.display = 'none'
-        }
-    }
+    updateBet();
+    createDeck();
 })
+
+function updateBet() {
+    let betInput = document.getElementById('bet')
+    let maxInput = document.getElementById('max-amount')
+
+    
+}
 
 /* This function will create a deck by making an API request using the deck of cards API.
  * Website is linked in the README.md. Also this snippet of code was from an article on how 
  * to call an API in JavaScript from FreeCodeCamp.org
  * The article is also linked in the README.md
  */
-
 function createDeck() {
     // Define the API URL
     let newDeck = 'https://www.deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6'
@@ -80,6 +63,11 @@ async function drawDeck() {
     }
 }
 
+/**
+ * This function takes the information from card objects and displays the cards on the website
+ * @param {card information} card 
+ * @param {player area or dealer area} classArea 
+ */
 function displayCard(card, classArea) {
 
     const container = document.querySelector(classArea)
@@ -115,7 +103,7 @@ async function deal() {
         playerHand.push(playerCard1, playerCard2);
         dealerHand.push(dealerCard1, dealerCard2);
 
-// Log the cards to the console
+        // Log the cards to the console
         console.log('Player hand', playerHand);
         console.log('Dealer hand', dealerHand);
 
@@ -141,3 +129,27 @@ function stay() {
 
 }
 
+// This section of code opens and closes the modal containing the game rules - credits to W3Schools
+// Get the modal and the button
+let modal = document.getElementsByClassName('modal-container')[0]
+let buttonRules = document.getElementsByClassName('btn-rules')[0]
+
+// Get the span that closes the modal
+let closeX = document.getElementsByClassName('close-x')[0]
+
+// Function that opens the modal
+function openModal() {
+    modal.style.display = 'block'
+}
+
+// Function that closes the modal
+function closeModal() {
+    modal.style.display = 'none'
+}
+
+// Also, function that closes the modal when you click outside the modal as well
+window.onclick = function (event) {
+    if (event.target === modal) {
+        modal.style.display = 'none'
+    }
+}

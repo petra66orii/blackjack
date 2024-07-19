@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById('bet').addEventListener('keydown', function(event) {
         if (event.key === 'Enter') {
+            event.preventDefault()
             updateBet()
         }
     })
@@ -19,8 +20,29 @@ document.addEventListener("DOMContentLoaded", function () {
 function updateBet() {
     let betInput = document.getElementById('bet')
     let maxInput = document.getElementById('max-amount')
+    let betAmount = document.getElementById('bet-amount')
 
-    
+    // We'll get the bet input value and the max amount value
+    let betValue = parseInt(betInput.value)
+    let maxValue = parseInt(maxInput.textContent)
+
+    // Validate the bet value to make sure 0 and/or negative numbers can't be entered
+    if (isNaN(betValue) || betValue <= 0) {
+        alert('Please enter a valid bet amount.')
+        return
+    }
+
+    // Validate the bet as well to ensure you can't bet more than the actual money you've available
+    if (betValue > maxValue) {
+        alert('You can\'t bet what you don\'t have.')
+        return
+    }
+
+    // Update the current bet display
+    betAmount.innerText = betValue
+
+    // Update the available amount as well
+    maxInput.innerText = maxValue - betValue
 }
 
 /* This function will create a deck by making an API request using the deck of cards API.

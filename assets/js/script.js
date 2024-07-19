@@ -7,6 +7,12 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('bet').value = ''
     document.getElementById('bet').focus()
 
+    document.getElementsByClassName('btn-place-bet')[0].addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            updateBet()
+        }
+    })
+
     updateBet();
     createDeck();
 })

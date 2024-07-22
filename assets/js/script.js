@@ -98,7 +98,7 @@ async function drawDeck() {
 }
 
 /**
- * This function takes the information from card objects and displays the cards on the website
+ * This function takes the information from card objects and displays the cards on the website. 
  * @param {card information} card 
  * @param {player area or dealer area} classArea 
  */
@@ -130,30 +130,46 @@ async function deal() {
         // Each player gets their card dealt
         let playerCard1 = await drawDeck()
         let playerCard2 = await drawDeck()
+
         let dealerCard1 = await drawDeck()
         let dealerCard2 = await drawDeck()
 
+        // Only one of the dealer's cards is displayed at the start of the game
+        displayBackCard('.dealer-area')
+        dealerHand.push(dealerCard1, dealerCard2)
+
+        displayCard(dealerCard2, '.dealer-area')
+
         // Push the cards onto their respective arrays
         playerHand.push(playerCard1, playerCard2);
-        dealerHand.push(dealerCard1, dealerCard2);
+        displayCard(playerCard1, '.player-area')
+        displayCard(playerCard2, '.player-area')
 
         // Log the cards to the console
         console.log('Player hand', playerHand);
         console.log('Dealer hand', dealerHand);
 
-        const playerContainer = document.querySelector('.player-area')
-        const dealerContainer = document.querySelector('.dealer-area')
+        //const playerContainer = document.querySelector('.player-area')
+        //const dealerContainer = document.querySelector('.dealer-area')
 
         playerContainer.innerHTML = ''
         dealerContainer.innerHTML = ''
 
         playerHand.forEach(card => displayCard(card, '.player-area'))
-        dealerHand.forEach(card => displayCard(card, '.dealer-area'))
+        //dealerHand.forEach(card => displayCard(card, '.dealer-area'))
     } catch (error) {
         console.log('Error dealing cards', error)
     }
 }
 
+function displayBackCard(classArea) {
+    let container = document.querySelector(classArea)
+    let backCardImg = document.createElement('img')
+    backCardImg.src = 'assets/images/back-card.png'
+    backCardImg.alt = 'Back of card'
+    backCardImg.id = 'back-card'
+    container.appendChild(backCardImg)
+}
 
 function hitMe() {
 

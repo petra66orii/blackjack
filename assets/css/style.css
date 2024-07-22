@@ -78,12 +78,24 @@ main {
     flex: 3 0 auto;
 }
 
+#player-title,
+#dealer-title {
+    height: 10%;
+    font-family: 'Kanit', Verdana, Tahoma, sans-serif;
+    color: #0a0908;
+    text-align: center;
+    position: sticky;
+    margin-top: 5px;
+    z-index: 999;
+}
+
 .player-area {
     width: 8rem;
     height: 20rem;
     float: left;
     align-self: center;
     margin-right: 5px;
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -101,7 +113,7 @@ main {
     height: 20rem;
     float: right;
     align-self: center;
-    margin-left: 5px;
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -116,15 +128,15 @@ main {
 
 
 .amount {
-padding: 5px;
-background-color: #9a031e;
-width: fit-content;
-align-self: center;
-color: #f2f4f3;
-border: 1px solid #f2f3f4;
-border-radius: 5px;
-font-family: 'Kanit', Verdana, Tahoma, sans-serif;
-font-size: small;
+    padding: 5px;
+    background-color: #9a031e;
+    width: fit-content;
+    align-self: center;
+    color: #f2f4f3;
+    border: 1px solid #f2f3f4;
+    border-radius: 5px;
+    font-family: 'Kanit', Verdana, Tahoma, sans-serif;
+    font-size: small;
 }
 
 /* Game buttons */
@@ -160,7 +172,8 @@ font-size: small;
     bottom: 5px;
 }
 
-.btn-hit, .btn-stay {
+.btn-hit,
+.btn-stay {
     font-size: 100%;
 }
 
@@ -243,7 +256,7 @@ footer {
     height: 100%;
     /* Enables scrollng if needed */
     overflow: auto;
-    background-color: rgb(0, 0, 0); 
+    background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.5);
 }
 

@@ -185,7 +185,7 @@ font-size: small;
 }
 
 .betting-sums input:disabled {
-    color:#f2f4f3;
+    display: none;
 }
 
 #current-bet {

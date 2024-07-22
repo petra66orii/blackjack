@@ -43,6 +43,13 @@ function updateBet() {
 
     // Update the available amount as well
     maxInput.innerText = maxValue - betValue
+
+    // Lock the bet so it can't be changed
+    betInput.disabled = true
+    let betButton = document.getElementById('place-bet')
+    betButton.disabled = true
+
+    deal()
 }
 
 /* This function will create a deck by making an API request using the deck of cards API.

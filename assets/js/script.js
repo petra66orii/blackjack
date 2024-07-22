@@ -108,6 +108,7 @@ function displayCard(card, classArea) {
     const cardImg = document.createElement('img')
     cardImg.src = card.image
     cardImg.alt = `${card.value} of ${card.suit}`
+    cardImg.id = 'card-drawn'
     container.appendChild(cardImg)
 }
 
@@ -171,12 +172,29 @@ function displayBackCard(classArea) {
     container.appendChild(backCardImg)
 }
 
-function hitMe() {
-
+async function hitMe() {
+    let newCard = await drawDeck()
+    playerHand.push(newCard)
+    displayCard(newCard, '.player-area')
+    document.getElementById('card-drawn').style.flexDirection = 'row'
+    document.getElementById('card-drawn').style.zIndex = 2
 }
 
 function stay() {
 
+}
+
+function getCount(hand) {
+    let count = 0
+    hand.forEach(card => {
+        if (card.value === 'QUEEN' || card.value === 'JACK' || card.value === 'KING') {
+            count += 10
+        } else if (card.value === 'ACE') {
+            count += 11
+        } else {
+            count += parseInt(card.value)
+        }
+    })
 }
 
 // This section of code opens and closes the modal containing the game rules - credits to W3Schools

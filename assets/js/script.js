@@ -48,6 +48,7 @@ function updateBet() {
     betInput.disabled = true
     let betButton = document.getElementById('place-bet')
     betButton.disabled = true
+    betButton.textContent = 'Bet Locked'
 
     deal()
 }

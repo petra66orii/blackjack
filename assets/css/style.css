@@ -292,9 +292,59 @@ footer {
     position: relative;
     bottom: 35px;
     left: 15px;
+    cursor: pointer;
 }
 
 .close-x:hover {
     color: #9A031E;
     transition: 0.4s;
+}
+
+/* Media query for screens smaller than 600px */
+@media screen and (max-width: 600px) {
+    .player-area, .dealer-area {
+        flex-direction: row;
+        overflow-x: auto;
+        width: 100%;
+    }
+
+    .player-area img, .dealer-area img {
+        /* This prevents the cards from shrinking */
+        flex: 0 0 auto;
+        /* For overlap adjustment */
+        margin-right: -70px;
+        position: relative;
+        /* Centers the stack of cards */
+        right: 40px;
+    }
+
+    .player-area img:nth-child(2), .dealer-area img:nth-child(2) {
+        /* Puts the newer cards on top */
+        z-index: 2;
+        /* Overlap adjustment */
+        margin-right: -70px;
+    }
+
+    .player-area img:nth-child(3), .dealer-area img:nth-child(3) {
+        /* Puts the newer cards on top */
+        z-index: 3;
+        /* Overlap adjustment */
+        margin-right: -70px;
+    }
+
+    .player-area img:nth-child(4), .dealer-area img:nth-child(4) {
+        /* Puts the newer cards on top */
+        z-index: 4;
+        /* Overlap adjustment */
+        margin-right: -70px;
+    }
+
+    .player-area img:nth-child(5), .dealer-area img:nth-child(5) {
+        /* Puts the newer cards on top */
+        z-index: 5;
+        /* Overlap adjustment */
+        margin-right: -70px;
+    }
+
+
 }

@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('bet').value = ''
     document.getElementById('bet').focus()
 
-    document.getElementById('bet').addEventListener('keydown', function(event) {
+    document.getElementById('bet').addEventListener('keydown', function (event) {
         if (event.key === 'Enter') {
             event.preventDefault()
             updateBet()
@@ -176,29 +176,42 @@ function displayBackCard(classArea) {
     container.appendChild(backCardImg)
 }
 
+function getCount(hand) {
+    let lowCount = 0
+    let aceCount = 0
+
+    // Calculate lowCount (if you only have one ace, it scores at 11; else it's 1) and count the number of Aces
+    hand.forEach(card => {
+        if (card.value === 'QUEEN' || card.value === 'JACK' || card.value === 'KING') {
+            lowCount += 10
+        } else if (card.value === 'ACE') {
+            lowCount += 1
+            aceCount++
+        } else {
+            lowCount += parseInt(card.value)
+        }
+    })
+
+    // Calculate highCount depending on the number of Aces
+    let highCount = lowCount
+    if (aceCount > 0) {
+        // Add 10 points for the first Ace if it doesn't bust the hand
+        highCount += 10
+        // If there are more than one Ace, adjust highCount accordingly 
+        if (highCount > 21) {
+            highCount -= 10
+        }
+    }
+}
+
 async function hitMe() {
     let newCard = await drawDeck()
     playerHand.push(newCard)
     displayCard(newCard, '.player-area')
-    //document.getElementById('card-drawn').style.flexDirection = 'row'
-    //document.getElementById('card-drawn').style.zIndex = 2
 }
 
 function stay() {
 
-}
-
-function getCount(hand) {
-    let count = 0
-    hand.forEach(card => {
-        if (card.value === 'QUEEN' || card.value === 'JACK' || card.value === 'KING') {
-            count += 10
-        } else if (card.value === 'ACE') {
-            count += 11
-        } else {
-            count += parseInt(card.value)
-        }
-    })
 }
 
 // This section of code opens and closes the modal containing the game rules - credits to W3Schools

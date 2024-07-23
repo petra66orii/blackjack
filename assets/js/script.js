@@ -209,6 +209,25 @@ async function hitMe() {
     let newCard = await drawDeck()
     playerHand.push(newCard)
     displayCard(newCard, '.player-area')
+
+    // Delay the alert messages by a second so the cards appear first
+    setTimeout(() => {
+        let count = getCount(playerHand)
+        console.log('Player count:', count.lowCount)
+        if (count.lowCount >= 22) {
+            console.log('Bust')
+            alert('Bust! You lose.')
+            hitMeButton.disabled = true
+            document.getElementById('bet-amount').innerText = 0
+        } else if (count.lowCount === 21) {
+            console.log('Blackjack')
+            alert('Blackjack! You win.')
+            hitMeButton.disabled = true
+            let betAmount = parseInt(document.getElementById('bet-amount').textContent)
+            let maxAmount = parseInt(document.getElementById('max-amount').textContent)
+            document.getElementById('max-amount').innerText = betAmount * 2 + maxAmount
+        }
+    }, 1000)
 }
 
 function stay() {

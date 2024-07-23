@@ -202,6 +202,7 @@ function getCount(hand) {
             highCount -= 10
         }
     }
+    return {lowCount, highCount}
 }
 
 async function hitMe() {

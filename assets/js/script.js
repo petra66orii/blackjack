@@ -1,6 +1,8 @@
 let playerHand = []
 let dealerHand = []
 let deckId = ''
+let hitMeButton = document.getElementById('hit-me-button')
+hitMeButton.disabled = true
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -51,6 +53,7 @@ function updateBet() {
     betButton.textContent = 'Bet Locked'
 
     deal()
+    hitMeButton.disabled = false
 }
 
 /* This function will create a deck by making an API request using the deck of cards API.
@@ -177,8 +180,8 @@ async function hitMe() {
     let newCard = await drawDeck()
     playerHand.push(newCard)
     displayCard(newCard, '.player-area')
-    document.getElementById('card-drawn').style.flexDirection = 'row'
-    document.getElementById('card-drawn').style.zIndex = 2
+    //document.getElementById('card-drawn').style.flexDirection = 'row'
+    //document.getElementById('card-drawn').style.zIndex = 2
 }
 
 function stay() {

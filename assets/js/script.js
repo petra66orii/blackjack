@@ -231,8 +231,22 @@ async function hitMe() {
     }, 1000)
 }
 
-function stay() {
+async function restartGame() {
+    playerHand = []
+    dealerHand = []
 
+    let playerContainer = document.querySelector('.player-area')
+    let dealerContainer = document.querySelector('.dealer-area')
+
+    playerContainer.innerHTML = ''
+    dealerContainer.innerHTML = ''
+
+    document.getElementById('bet').disabled = false
+    document.getElementById('bet').value = ''
+    document.getElementById('bet').focus()
+    let betButton = document.getElementById('place-bet')
+    betButton.disabled = false
+    betButton.textContent = 'Place Bet'
 }
 
 // This section of code opens and closes the modal containing the game rules - credits to W3Schools

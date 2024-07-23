@@ -65,7 +65,7 @@ main {
 
 /* Main game area */
 .game-area {
-    height: 60%;
+    height: auto;
     width: 90%;
     border: 1px solid antiquewhite;
     margin: 15px 20px;
@@ -73,31 +73,32 @@ main {
     background-color: #1a936f;
     align-self: center;
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-evenly;
     flex: 3 0 auto;
+    flex-flow: column wrap;
 }
 
 #player-title,
 #dealer-title {
-    height: 10%;
     font-family: 'Kanit', Verdana, Tahoma, sans-serif;
     color: #0a0908;
     text-align: center;
-    position: sticky;
+    position: relative;
     margin-top: 5px;
     z-index: 999;
 }
 
+hr {
+    border-top: 1px solid #0a0908;
+    display: block;
+}
 .player-area {
-    width: 8rem;
-    height: 20rem;
-    float: left;
+    width: 50%;
+    height: 50%;
     align-self: center;
-    margin-right: 5px;
-    margin-top: 50px;
+    margin-bottom: 10px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
 }
 
@@ -109,14 +110,13 @@ main {
 }
 
 .dealer-area {
-    width: 8rem;
-    height: 20rem;
-    float: right;
+    width: 50%;
+    height: 50%;
     align-self: center;
-    margin-top: 50px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
+    margin-bottom: 10px;
 }
 
 .dealer-area img {

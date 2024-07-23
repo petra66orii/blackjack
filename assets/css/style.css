@@ -61,6 +61,7 @@ main {
     margin-bottom: 40px;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
 }
 
 /* Main game area */
@@ -85,7 +86,7 @@ main {
     text-align: center;
     position: relative;
     margin-top: 5px;
-    z-index: 999;
+    z-index: 99;
 }
 
 hr {

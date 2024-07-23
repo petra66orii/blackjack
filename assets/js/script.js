@@ -219,6 +219,10 @@ async function hitMe() {
             alert('Bust! You lose.')
             hitMeButton.disabled = true
             document.getElementById('bet-amount').innerText = 0
+
+            setTimeout(() => {
+                restartGame()
+            }, 3000)
         } else if (count.lowCount === 21) {
             console.log('Blackjack')
             alert('Blackjack! You win.')
@@ -227,6 +231,10 @@ async function hitMe() {
             let maxAmount = parseInt(document.getElementById('max-amount').textContent)
             document.getElementById('max-amount').innerText = betAmount * 2 + maxAmount
             document.getElementById('bet-amount').innerText = 0
+          
+            setTimeout(() => {
+                restartGame()
+            }, 3000)  
         }
     }, 1000)
 }

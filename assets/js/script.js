@@ -250,6 +250,8 @@ async function hitMe() {
             console.log('Bust')
             alert('Bust! You lose.')
             hitMeButton.disabled = true
+
+            // Lose your current bet
             document.getElementById('bet-amount').innerText = 0
 
             // A timer is set so the game restarts 3 seconds after the game is over
@@ -260,6 +262,8 @@ async function hitMe() {
             console.log('Blackjack')
             alert('Blackjack! You win.')
             hitMeButton.disabled = true
+
+            // Cash balance modifies accordingly
             let betAmount = parseInt(document.getElementById('bet-amount').textContent)
             let maxAmount = parseInt(document.getElementById('max-amount').textContent)
             document.getElementById('max-amount').innerText = betAmount * 2 + maxAmount
@@ -315,6 +319,8 @@ async function dealerTurn() {
             setTimeout(() => {
                 alert('Dealer bust! You win!')
             }, 1500)
+
+            // Cash balance modifies accordingly
             let betAmount = parseInt(document.getElementById('bet-amount').textContent)
             let maxAmount = parseInt(document.getElementById('max-amount').textContent)
             document.getElementById('max-amount').innerText = betAmount * 2 + maxAmount
@@ -330,6 +336,8 @@ async function dealerTurn() {
             setTimeout(() => {
                 alert('Dealer blackjack! You lose.')
             }, 1500)
+
+            // Lose your current bet
             document.getElementById('bet-amount').innerText = 0
 
             setTimeout(() => {
@@ -347,6 +355,8 @@ async function dealerTurn() {
                 setTimeout(() => {
                     alert(`Player count: ${playerCount}\nDealer count: ${dealerCount}\nYou win!`)
                 }, 1500)
+
+                // Cash balance modifies accordingly
                 let betAmount = parseInt(document.getElementById('bet-amount').textContent)
                 let maxAmount = parseInt(document.getElementById('max-amount').textContent)
                 document.getElementById('max-amount').innerText = betAmount * 2 + maxAmount
@@ -361,6 +371,8 @@ async function dealerTurn() {
                 setTimeout(() => {
                     alert(`Player count: ${playerCount}\nDealer count: ${dealerCount}\nDealer wins! You lose.`)
                 }, 1500)
+
+                // Lose your current bet
                 document.getElementById('bet-amount').innerText = 0
 
                 setTimeout(() => {
@@ -370,6 +382,8 @@ async function dealerTurn() {
             } else {
                 console.log('Push')
                 alert('Push.')
+                
+                // Current bet goes back in your cash balance
                 let betAmount = parseInt(document.getElementById('bet-amount').textContent)
                 let maxAmount = parseInt(document.getElementById('max-amount').textContent)
                 document.getElementById('max-amount').innerText = betAmount + maxAmount
@@ -406,6 +420,8 @@ async function restartGame() {
     let betButton = document.getElementById('place-bet')
     betButton.disabled = false
     betButton.textContent = 'Place Bet'
+
+    // Reset scores
     playerScore.innerText = 0
     dealerScore.innerText = 0
     dealerScore.style.display = 'none'

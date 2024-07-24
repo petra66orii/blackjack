@@ -7,6 +7,7 @@ hitMeButton.disabled = true
 let stayButton = document.getElementById('stay-button')
 stayButton.disabled = true
 let playerScore = document.getElementById('player-count')
+let dealerScore = document.getElementById('dealer-count')
 
 // We'll place the focus on the bet input since that signals the start of the game
 document.addEventListener("DOMContentLoaded", function () {
@@ -166,6 +167,7 @@ async function deal() {
         // Calculate player's points
         let count = getCount(playerHand)
         playerScore.innerText = count.lowCount
+        dealerScore.innerText = count.lowCount
 
         // Log the cards to the console
         console.log('Player hand', playerHand);
@@ -291,11 +293,13 @@ async function dealerTurn() {
     await new Promise(resolve => setTimeout(resolve, 1000))
     hitMeButton.disabled = true
     stayButton.disabled = true
+    dealerScore.style.display = 'inline'
 
     // To provide a better UX experience and to avoid dealer's cards getting shuffled around, 
     // I nested the conditional functions in a while loop, using break at the end of every condition
     while (true) {
         let count = getCount(dealerHand)
+        dealerScore.innerText = count.lowCount
         console.log('Dealer count:', count.lowCount)
 
         if (count.lowCount < 17) {
@@ -308,7 +312,9 @@ async function dealerTurn() {
             await new Promise(resolve => setTimeout(resolve, 2000))
         } else if (count.lowCount > 21) {
             console.log('Dealer bust')
-            alert('Dealer bust! You win!')
+            setTimeout(() => {
+                alert('Dealer bust! You win!')
+            }, 1500)
             let betAmount = parseInt(document.getElementById('bet-amount').textContent)
             let maxAmount = parseInt(document.getElementById('max-amount').textContent)
             document.getElementById('max-amount').innerText = betAmount * 2 + maxAmount
@@ -321,7 +327,9 @@ async function dealerTurn() {
             break;
         } else if (count.lowCount === 21) {
             console.log('Dealer blackjack')
-            alert('Dealer blackjack! You lose.')
+            setTimeout(() => {
+                alert('Dealer blackjack! You lose.')
+            }, 1500)
             document.getElementById('bet-amount').innerText = 0
 
             setTimeout(() => {
@@ -336,7 +344,9 @@ async function dealerTurn() {
 
             if (playerCount > dealerCount) {
                 console.log('Player wins')
-                alert(`Player count: ${playerCount}\nDealer count: ${dealerCount}\nYou win!`)
+                setTimeout(() => {
+                    alert(`Player count: ${playerCount}\nDealer count: ${dealerCount}\nYou win!`)
+                }, 1500)
                 let betAmount = parseInt(document.getElementById('bet-amount').textContent)
                 let maxAmount = parseInt(document.getElementById('max-amount').textContent)
                 document.getElementById('max-amount').innerText = betAmount * 2 + maxAmount
@@ -348,7 +358,9 @@ async function dealerTurn() {
                 break;
             } else if (playerCount < dealerCount) {
                 console.log('Dealer wins')
-                alert(`Player count: ${playerCount}\nDealer count: ${dealerCount}\nDealer wins! You lose.`)
+                setTimeout(() => {
+                    alert(`Player count: ${playerCount}\nDealer count: ${dealerCount}\nDealer wins! You lose.`)
+                }, 1500)
                 document.getElementById('bet-amount').innerText = 0
 
                 setTimeout(() => {
@@ -395,6 +407,8 @@ async function restartGame() {
     betButton.disabled = false
     betButton.textContent = 'Place Bet'
     playerScore.innerText = 0
+    dealerScore.innerText = 0
+    dealerScore.style.display = 'none'
 }
 
 // This section of code opens and closes the modal containing the game rules - credits to W3Schools

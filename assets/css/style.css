@@ -97,6 +97,10 @@ main {
     z-index: 99;
 }
 
+#dealer-count {
+    display: none;
+}
+
 hr {
     border-top: 1px solid #0a0908;
     display: block;

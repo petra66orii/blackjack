@@ -6,6 +6,7 @@ let hitMeButton = document.getElementById('hit-me-button')
 hitMeButton.disabled = true
 let stayButton = document.getElementById('stay-button')
 stayButton.disabled = true
+let playerScore = document.getElementById('player-count')
 
 // We'll place the focus on the bet input since that signals the start of the game
 document.addEventListener("DOMContentLoaded", function () {
@@ -162,6 +163,10 @@ async function deal() {
         displayCard(playerCard1, '.player-area')
         displayCard(playerCard2, '.player-area')
 
+        // Calculate player's points
+        let count = getCount(playerHand)
+        playerScore.innerText = count.lowCount
+
         // Log the cards to the console
         console.log('Player hand', playerHand);
         console.log('Dealer hand', dealerHand);
@@ -232,9 +237,12 @@ async function hitMe() {
     playerHand.push(newCard)
     displayCard(newCard, '.player-area')
 
+    // Update player's score
+    let count = getCount(playerHand)
+    playerScore.innerText = count.lowCount
+
     // Delay the alert messages by a second so the cards appear first
     setTimeout(() => {
-        let count = getCount(playerHand)
         console.log('Player count:', count.lowCount)
         if (count.lowCount >= 22) {
             console.log('Bust')
@@ -294,7 +302,7 @@ async function dealerTurn() {
             let newCard = await drawDeck()
             dealerHand.push(newCard)
             displayCard(newCard, '.dealer-area')
-            
+
             // I couldn't put in a delay for the dealer to draw a card, 
             // so I had to use an await Promise function as dealerTurn is an async function - credits to W3Schools 
             await new Promise(resolve => setTimeout(resolve, 2000))
@@ -386,6 +394,7 @@ async function restartGame() {
     let betButton = document.getElementById('place-bet')
     betButton.disabled = false
     betButton.textContent = 'Place Bet'
+    playerScore.innerText = 0
 }
 
 // This section of code opens and closes the modal containing the game rules - credits to W3Schools

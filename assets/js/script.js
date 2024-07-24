@@ -62,7 +62,7 @@ function updateBet() {
 
     deal()
     hitMeButton.disabled = false
-    stayButton.disabled = true
+    stayButton.disabled = false
 }
 
 /* This function will create a deck by making an API request using the deck of cards API.

@@ -22,28 +22,35 @@
     </header>
     <!--Main Content-->
     <main>
+        <div id="top-buttons">
+            <!--Opens the modal container-->
+            <button class="btn btn-rules" onclick="openModal()">How to Play</button>
+            <div class="amount">Amount Available: <span id="max-amount">1000</span>$</div>
+        </div>
         <!--Game Area-->
         <div class="game-area">
             <h2 id="player-title">Player</h2>
             <div class="player-area">
-            </div><hr>
+            </div>
+            <hr>
             <h2 id="dealer-title">Dealer</h2>
             <div class="dealer-area">
             </div>
         </div>
-        <div class="amount">Amount Available: <span id="max-amount">1000</span>$</div>
+        <div id="current-bet" class="bets">Current bet: <span id="bet-amount">0</span>$</div>
         <!--Buttons Area-->
         <div class="buttons">
-            <div class="hit-or-stay">
+            <div class="hit-div">
                 <button class="btn btn-hit" id="hit-me-button" onclick="hitMe()">Hit Me</button>
-                <button class="btn btn-stay" onclick="stay()">Stay</button>
             </div>
             <div class="betting-sums">
                 <label for="bet" class="bets">Bet:</label>
                 <input type="number" name="bet" id="bet">
                 <button class="btn btn-place-bet" id="place-bet" onclick="updateBet()">Place Bet</button>
             </div>
-            <div id="current-bet" class="bets">Current bet: <span id="bet-amount">0</span>$</div>
+            <div class="stay-div">
+                <button class="btn btn-stay" onclick="stay()">Stay</button>
+            </div>
         </div>
         <!--Modal container section - credits to W3Schools for the tutorial on how to code one-->
         <div class="modal-container">
@@ -65,8 +72,7 @@
     </main>
     <!--Footer-->
     <footer>
-        <!--Opens the modal container-->
-        <button class="btn btn-rules" onclick="openModal()">How to Play</button>
+
     </footer>
     <!--JavaScript page-->
     <script src="assets/js/script.js"></script>

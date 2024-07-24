@@ -130,8 +130,6 @@ function displayCard(card, classArea) {
     container.appendChild(cardImg)
 }
 
-
-
 /* This function will deal and output two cards for both players. Credits are due to W3Schools and their
  * tutorial on async and await functions.
  */
@@ -286,6 +284,8 @@ async function dealerTurn() {
     hitMeButton.disabled = true
     stayButton.disabled = true
 
+    // To provide a better UX experience and to avoid dealer's cards getting shuffled around, 
+    // I nested the conditional functions in a while loop, using break at the end of every condition
     while (true) {
         let count = getCount(dealerHand)
         console.log('Dealer count:', count.lowCount)
@@ -294,24 +294,27 @@ async function dealerTurn() {
             let newCard = await drawDeck()
             dealerHand.push(newCard)
             displayCard(newCard, '.dealer-area')
-            // I couldn't put in a delay for the dealer to draw a card, so I had to use an await Promise function as dealerTurn is an async function - credits to W3Schools 
+            
+            // I couldn't put in a delay for the dealer to draw a card, 
+            // so I had to use an await Promise function as dealerTurn is an async function - credits to W3Schools 
             await new Promise(resolve => setTimeout(resolve, 2000))
         } else if (count.lowCount > 21) {
-                console.log('Dealer bust')
-                alert('Dealer bust! You win!')
-                let betAmount = parseInt(document.getElementById('bet-amount').textContent)
-                let maxAmount = parseInt(document.getElementById('max-amount').textContent)
-                document.getElementById('max-amount').innerText = betAmount * 2 + maxAmount
-                document.getElementById('bet-amount').innerText = 0
-            
+            console.log('Dealer bust')
+            alert('Dealer bust! You win!')
+            let betAmount = parseInt(document.getElementById('bet-amount').textContent)
+            let maxAmount = parseInt(document.getElementById('max-amount').textContent)
+            document.getElementById('max-amount').innerText = betAmount * 2 + maxAmount
+            document.getElementById('bet-amount').innerText = 0
+
+            // Game restarts automatically after 3 seconds at the end of every game
             setTimeout(() => {
                 restartGame()
             }, 3000)
             break;
         } else if (count.lowCount === 21) {
-                console.log('Dealer blackjack')
-                alert('Dealer blackjack! You lose.')
-                document.getElementById('bet-amount').innerText = 0
+            console.log('Dealer blackjack')
+            alert('Dealer blackjack! You lose.')
+            document.getElementById('bet-amount').innerText = 0
 
             setTimeout(() => {
                 restartGame()

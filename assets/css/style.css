@@ -242,7 +242,7 @@ main .btn:hover {
 footer {
     position: fixed;
     bottom: 0;
-    display: flex;
+    display: none;
     justify-content: center;
     flex-direction: row;
     background-color: #f2f4f3;

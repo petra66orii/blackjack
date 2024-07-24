@@ -168,14 +168,6 @@ async function deal() {
         console.log('Player hand', playerHand);
         console.log('Dealer hand', dealerHand);
 
-        //const playerContainer = document.querySelector('.player-area')
-        //const dealerContainer = document.querySelector('.dealer-area')
-
-        playerContainer.innerHTML = ''
-        dealerContainer.innerHTML = ''
-
-        playerHand.forEach(card => displayCard(card, '.player-area'))
-        //dealerHand.forEach(card => displayCard(card, '.dealer-area'))
     } catch (error) {
         console.log('Error dealing cards', error)
     }

@@ -284,79 +284,87 @@ function revealDealerCard() {
     dealerContainer.appendChild(flipCardImg)
 }
 
+/* This function automates the dealer's turn. Based on a few conditionals, the dealer will draw cards or stay.
+ * The game automatically restarts after the game finishes.
+ */
 async function dealerTurn() {
     revealDealerCard()
+    // Wait for 1 second to reveal the dealer's card for better UX experience - credits to W3Schools
+    await new Promise(resolve => setTimeout(resolve, 1000))
     hitMeButton.disabled = true
     stayButton.disabled = true
 
-    let count = getCount(dealerHand)
-    console.log('Dealer count:', count.lowCount)
+    while (true) {
+        let count = getCount(dealerHand)
+        console.log('Dealer count:', count.lowCount)
 
-    if (count.lowCount < 17) {
-        let newCard = await drawDeck()
-        dealerHand.push(newCard)
-        displayCard(newCard, '.dealer-area')
-        setTimeout(() => {
-            dealerTurn()
-        }, 2000)
-    } else if (count.lowCount > 21) {
-        setTimeout(() => {
-            console.log('Dealer bust')
-            alert('Dealer bust! You win!')
-            let betAmount = parseInt(document.getElementById('bet-amount').textContent)
-            let maxAmount = parseInt(document.getElementById('max-amount').textContent)
-            document.getElementById('max-amount').innerText = betAmount * 2 + maxAmount
-            document.getElementById('bet-amount').innerText = 0
-        }, 1000)
-
-        setTimeout(() => {
-            restartGame()
-        }, 3000)
-    } else if (count.lowCount === 21) {
-        setTimeout(() => {
-            console.log('Dealer blackjack')
-            alert('Dealer blackjack! You lose.')
-            document.getElementById('bet-amount').innerText = 0
-        }, 1000)
-
-        setTimeout(() => {
-            restartGame()
-        }, 3000)
-    } else {
-        let playerCount = getCount(playerHand).lowCount
-        let dealerCount = count.lowCount
-        console.log('Player count:', playerCount)
-        console.log('Dealer count:', dealerCount)
-        if (playerCount > dealerCount) {
-            console.log('Player wins')
-            alert(`Player count: ${playerCount}\nDealer count: ${dealerCount}\nYou win!`)
-            let betAmount = parseInt(document.getElementById('bet-amount').textContent)
-            let maxAmount = parseInt(document.getElementById('max-amount').textContent)
-            document.getElementById('max-amount').innerText = betAmount * 2 + maxAmount
-            document.getElementById('bet-amount').innerText = 0
+        if (count.lowCount < 17) {
+            let newCard = await drawDeck()
+            dealerHand.push(newCard)
+            displayCard(newCard, '.dealer-area')
+            // I couldn't put in a delay for the dealer to draw a card, so I had to use an await Promise function as dealerTurn is an async function - credits to W3Schools 
+            await new Promise(resolve => setTimeout(resolve, 2000))
+        } else if (count.lowCount > 21) {
+                console.log('Dealer bust')
+                alert('Dealer bust! You win!')
+                let betAmount = parseInt(document.getElementById('bet-amount').textContent)
+                let maxAmount = parseInt(document.getElementById('max-amount').textContent)
+                document.getElementById('max-amount').innerText = betAmount * 2 + maxAmount
+                document.getElementById('bet-amount').innerText = 0
+            
+            setTimeout(() => {
+                restartGame()
+            }, 3000)
+            break;
+        } else if (count.lowCount === 21) {
+                console.log('Dealer blackjack')
+                alert('Dealer blackjack! You lose.')
+                document.getElementById('bet-amount').innerText = 0
 
             setTimeout(() => {
                 restartGame()
             }, 3000)
-        } else if (playerCount < dealerCount) {
-            console.log('Dealer wins')
-            alert(`Player count: ${playerCount}\nDealer count: ${dealerCount}\nDealer wins! You lose.`)
-            document.getElementById('bet-amount').innerText = 0
-
-            setTimeout(() => {
-                restartGame()
-            }, 3000)
+            break;
         } else {
-            console.log('Push')
-            alert('Push.')
-            let betAmount = parseInt(document.getElementById('bet-amount').textContent)
-            let maxAmount = parseInt(document.getElementById('max-amount').textContent)
-            document.getElementById('max-amount').innerText = betAmount + maxAmount
-            document.getElementById('bet-amount').innerText = 0
+            let playerCount = getCount(playerHand).lowCount
+            let dealerCount = count.lowCount
+            console.log('Player count:', playerCount)
+            console.log('Dealer count:', dealerCount)
 
-            setTimeout(() => {
-                restartGame()
-            }, 3000)
+            if (playerCount > dealerCount) {
+                console.log('Player wins')
+                alert(`Player count: ${playerCount}\nDealer count: ${dealerCount}\nYou win!`)
+                let betAmount = parseInt(document.getElementById('bet-amount').textContent)
+                let maxAmount = parseInt(document.getElementById('max-amount').textContent)
+                document.getElementById('max-amount').innerText = betAmount * 2 + maxAmount
+                document.getElementById('bet-amount').innerText = 0
+
+                setTimeout(() => {
+                    restartGame()
+                }, 3000)
+                break;
+            } else if (playerCount < dealerCount) {
+                console.log('Dealer wins')
+                alert(`Player count: ${playerCount}\nDealer count: ${dealerCount}\nDealer wins! You lose.`)
+                document.getElementById('bet-amount').innerText = 0
+
+                setTimeout(() => {
+                    restartGame()
+                }, 3000)
+                break;
+            } else {
+                console.log('Push')
+                alert('Push.')
+                let betAmount = parseInt(document.getElementById('bet-amount').textContent)
+                let maxAmount = parseInt(document.getElementById('max-amount').textContent)
+                document.getElementById('max-amount').innerText = betAmount + maxAmount
+                document.getElementById('bet-amount').innerText = 0
+
+                setTimeout(() => {
+                    restartGame()
+                }, 3000)
+                break;
+            }
         }
     }
 }

@@ -4,6 +4,8 @@ let dealerHand = []
 let deckId = ''
 let hitMeButton = document.getElementById('hit-me-button')
 hitMeButton.disabled = true
+let stayButton = document.getElementById('stay-button')
+stayButton.disabled = true
 
 // We'll place the focus on the bet input since that signals the start of the game
 document.addEventListener("DOMContentLoaded", function () {
@@ -60,6 +62,7 @@ function updateBet() {
 
     deal()
     hitMeButton.disabled = false
+    stayButton.disabled = true
 }
 
 /* This function will create a deck by making an API request using the deck of cards API.
@@ -284,6 +287,7 @@ function revealDealerCard() {
 async function dealerTurn() {
     revealDealerCard()
     hitMeButton.disabled = true
+    stayButton.disabled = true
 
     let count = getCount(dealerHand)
     console.log('Dealer count:', count.lowCount)

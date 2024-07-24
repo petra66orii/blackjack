@@ -223,7 +223,10 @@ function getCount(hand) {
             highCount -= 10
         }
     }
-    return {lowCount, highCount}
+    return {
+        lowCount,
+        highCount
+    }
 }
 
 /* This function draws a new card until you either you decide to stay, you bust or win by getting blackjack.  
@@ -258,11 +261,11 @@ async function hitMe() {
             let maxAmount = parseInt(document.getElementById('max-amount').textContent)
             document.getElementById('max-amount').innerText = betAmount * 2 + maxAmount
             document.getElementById('bet-amount').innerText = 0
-          
+
             // A timer is set so the game restarts 3 seconds after the game is over
             setTimeout(() => {
                 restartGame()
-            }, 3000)  
+            }, 3000)
         }
     }, 1000)
 }
@@ -273,9 +276,85 @@ function revealDealerCard() {
     let flipCardImg = document.getElementById('back-card')
     flipCardImg.src = dealerHand[0].image
     flipCardImg.alt = `${dealerHand[0].value} of ${dealerHand[0].suit}`
-        
+
     let dealerContainer = document.querySelector('.dealer-area')
     dealerContainer.appendChild(flipCardImg)
+}
+
+async function dealerTurn() {
+    revealDealerCard()
+    hitMeButton.disabled = true
+
+    let count = getCount(dealerHand)
+    console.log('Dealer count:', count.lowCount)
+
+    if (count.lowCount < 17) {
+        let newCard = await drawDeck()
+        dealerHand.push(newCard)
+        displayCard(newCard, '.dealer-area')
+        setTimeout(() => {
+            dealerTurn()
+        }, 2000)
+    } else if (count.lowCount > 21) {
+        setTimeout(() => {
+            console.log('Dealer bust')
+            alert('Dealer bust! You win!')
+            let betAmount = parseInt(document.getElementById('bet-amount').textContent)
+            let maxAmount = parseInt(document.getElementById('max-amount').textContent)
+            document.getElementById('max-amount').innerText = betAmount * 2 + maxAmount
+            document.getElementById('bet-amount').innerText = 0
+        }, 1000)
+
+        setTimeout(() => {
+            restartGame()
+        }, 3000)
+    } else if (count.lowCount === 21) {
+        setTimeout(() => {
+            console.log('Dealer blackjack')
+            alert('Dealer blackjack! You lose.')
+            document.getElementById('bet-amount').innerText = 0
+        }, 1000)
+
+        setTimeout(() => {
+            restartGame()
+        }, 3000)
+    } else {
+        let playerCount = getCount(playerHand).lowCount
+        let dealerCount = count.lowCount
+        console.log('Player count:', playerCount)
+        console.log('Dealer count:', dealerCount)
+        if (playerCount > dealerCount) {
+            console.log('Player wins')
+            alert(`Player count: ${playerCount}\nDealer count: ${dealerCount}\nYou win!`)
+            let betAmount = parseInt(document.getElementById('bet-amount').textContent)
+            let maxAmount = parseInt(document.getElementById('max-amount').textContent)
+            document.getElementById('max-amount').innerText = betAmount * 2 + maxAmount
+            document.getElementById('bet-amount').innerText = 0
+
+            setTimeout(() => {
+                restartGame()
+            }, 3000)
+        } else if (playerCount < dealerCount) {
+            console.log('Dealer wins')
+            alert(`Player count: ${playerCount}\nDealer count: ${dealerCount}\nDealer wins! You lose.`)
+            document.getElementById('bet-amount').innerText = 0
+
+            setTimeout(() => {
+                restartGame()
+            }, 3000)
+        } else {
+            console.log('Push')
+            alert('Push.')
+            let betAmount = parseInt(document.getElementById('bet-amount').textContent)
+            let maxAmount = parseInt(document.getElementById('max-amount').textContent)
+            document.getElementById('max-amount').innerText = betAmount + maxAmount
+            document.getElementById('bet-amount').innerText = 0
+
+            setTimeout(() => {
+                restartGame()
+            }, 3000)
+        }
+    }
 }
 
 /* This function restarts the game and the player and dealer start again with a clean slate. You will see your 

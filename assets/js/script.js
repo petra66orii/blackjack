@@ -1,9 +1,11 @@
+// Some global variables that are needed throughout the game
 let playerHand = []
 let dealerHand = []
 let deckId = ''
 let hitMeButton = document.getElementById('hit-me-button')
 hitMeButton.disabled = true
 
+// We'll place the focus on the bet input since that signals the start of the game
 document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById('bet').value = ''
@@ -19,6 +21,10 @@ document.addEventListener("DOMContentLoaded", function () {
     createDeck();
 })
 
+/* This function sets the game in motion. The input is validated so you can't put in a number less than or equal
+ * to 0, nor can you place a bet higher than your balance. After the bet, the input is locked so no other 
+ * modifications are made until the game restarts.
+ */
 function updateBet() {
     let betInput = document.getElementById('bet')
     let maxInput = document.getElementById('max-amount')
@@ -108,8 +114,13 @@ async function drawDeck() {
  */
 function displayCard(card, classArea) {
 
+    // Declare the area where we want the card to show up
     const container = document.querySelector(classArea)
+
+    // Create the image 
     const cardImg = document.createElement('img')
+
+    // We input the source (the API), alt-text and we put an id for future reference and append it to the container
     cardImg.src = card.image
     cardImg.alt = `${card.value} of ${card.suit}`
     cardImg.id = 'card-drawn'
@@ -167,6 +178,10 @@ async function deal() {
     }
 }
 
+/**
+ * This function will display the back of the dealer's second card until his turn
+ * @param {dealer area} classArea 
+ */
 function displayBackCard(classArea) {
     let container = document.querySelector(classArea)
     let backCardImg = document.createElement('img')
@@ -176,6 +191,12 @@ function displayBackCard(classArea) {
     container.appendChild(backCardImg)
 }
 
+/**
+ * This function will count the points on each of the player's hands, while taking into account the number of Aces
+ * that are drawn, and then return the counts, which will then be used to determine the winner.
+ * @param {playerHand or dealerHand} hand 
+ * @returns lowCount, highCount properties
+ */
 function getCount(hand) {
     let lowCount = 0
     let aceCount = 0
@@ -205,6 +226,11 @@ function getCount(hand) {
     return {lowCount, highCount}
 }
 
+/* This function draws a new card until you either you decide to stay, you bust or win by getting blackjack.  
+ * If you win by getting blackjack or bust and lose, the game will automatically restart. You either earn or lose
+ * your bet depending on the outcome. The function uses the lowCount property from the getCount() function to 
+ * determine if it is a winning hand or not. 
+ */
 async function hitMe() {
     let newCard = await drawDeck()
     playerHand.push(newCard)
@@ -220,6 +246,7 @@ async function hitMe() {
             hitMeButton.disabled = true
             document.getElementById('bet-amount').innerText = 0
 
+            // A timer is set so the game restarts 3 seconds after the game is over
             setTimeout(() => {
                 restartGame()
             }, 3000)
@@ -232,6 +259,7 @@ async function hitMe() {
             document.getElementById('max-amount').innerText = betAmount * 2 + maxAmount
             document.getElementById('bet-amount').innerText = 0
           
+            // A timer is set so the game restarts 3 seconds after the game is over
             setTimeout(() => {
                 restartGame()
             }, 3000)  
@@ -239,7 +267,12 @@ async function hitMe() {
     }, 1000)
 }
 
+/* This function restarts the game and the player and dealer start again with a clean slate. You will see your 
+ * balance updated and you will see that the betting input is unlocked in order to place a new bet.
+ */
 async function restartGame() {
+
+    // Reset the player and dealer arrays
     playerHand = []
     dealerHand = []
 
@@ -249,6 +282,7 @@ async function restartGame() {
     playerContainer.innerHTML = ''
     dealerContainer.innerHTML = ''
 
+    // Focus is placed back on bet input in order to place a new bet
     document.getElementById('bet').disabled = false
     document.getElementById('bet').value = ''
     document.getElementById('bet').focus()

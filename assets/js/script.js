@@ -267,6 +267,17 @@ async function hitMe() {
     }, 1000)
 }
 
+/* This function reveals the dealer's card when the player stays
+ */
+function revealDealerCard() {
+    let flipCardImg = document.getElementById('back-card')
+    flipCardImg.src = dealerHand[0].image
+    flipCardImg.alt = `${dealerHand[0].value} of ${dealerHand[0].suit}`
+        
+    let dealerContainer = document.querySelector('.dealer-area')
+    dealerContainer.appendChild(flipCardImg)
+}
+
 /* This function restarts the game and the player and dealer start again with a clean slate. You will see your 
  * balance updated and you will see that the betting input is unlocked in order to place a new bet.
  */

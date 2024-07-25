@@ -251,7 +251,11 @@ async function hitMe() {
         console.log('Player count:', playerCount)
         if (playerCount >= 22) {
             console.log('Bust')
-            alert('Bust! You lose.')
+            modalEndGame.style.display = 'block'
+            endGameHeading.textContent = 'Bust! You lose!'
+            buttonEndGame.textContent = 'Continue'
+            playerEndScore.style.display = 'none'
+            dealerEndScore.style.display = 'none'
             hitMeButton.disabled = true
 
             // Lose your current bet
@@ -259,15 +263,13 @@ async function hitMe() {
             if (maxAmount === 0) {
                 gameOver();
             }
-
-
-            // A timer is set so the game restarts 3 seconds after the game is over
-            setTimeout(() => {
-                restartGame()
-            }, 3000)
         } else if (playerCount === 21) {
             console.log('Blackjack')
-            alert('Blackjack! You win.')
+            modalEndGame.style.display = 'block'
+            endGameHeading.textContent = 'Blackjack! You win!'
+            buttonEndGame.textContent = 'Continue'
+            playerEndScore.style.display = 'none'
+            dealerEndScore.style.display = 'none'
             hitMeButton.disabled = true
 
             // Cash balance modifies accordingly
@@ -275,11 +277,6 @@ async function hitMe() {
             let maxAmount = parseInt(document.getElementById('max-amount').textContent)
             document.getElementById('max-amount').innerText = betAmount * 2 + maxAmount
             document.getElementById('bet-amount').innerText = 0
-
-            // A timer is set so the game restarts 3 seconds after the game is over
-            setTimeout(() => {
-                restartGame()
-            }, 3000)
         }
     }, 1000)
 }
@@ -327,7 +324,11 @@ async function dealerTurn() {
         } else if (dealerCount > 21) {
             console.log('Dealer bust')
             setTimeout(() => {
-                alert('Dealer bust! You win!')
+                modalEndGame.style.display = 'block'
+                endGameHeading.textContent = 'Dealer bust! You win!'
+                playerEndScore.style.display = 'none'
+                dealerEndScore.style.display = 'none'
+                buttonEndGame.textContent = 'Continue'
             }, 1500)
 
             // Cash balance modifies accordingly
@@ -335,16 +336,15 @@ async function dealerTurn() {
             let maxAmount = parseInt(document.getElementById('max-amount').textContent)
             document.getElementById('max-amount').innerText = betAmount * 2 + maxAmount
             document.getElementById('bet-amount').innerText = 0
-
-            // Game restarts automatically after 3 seconds at the end of every game
-            setTimeout(() => {
-                restartGame()
-            }, 3000)
             break;
         } else if (dealerCount === 21) {
             console.log('Dealer blackjack')
             setTimeout(() => {
-                alert('Dealer blackjack! You lose.')
+                modalEndGame.style.display = 'block'
+                endGameHeading.textContent = ' Dealer Blackjack! You lose.'
+                playerEndScore.style.display = 'none'
+                dealerEndScore.style.display = 'none'
+                buttonEndGame.textContent = 'Continue'
             }, 1500)
 
             // Lose your current bet
@@ -353,11 +353,6 @@ async function dealerTurn() {
             if (maxAmount === 0) {
                 gameOver();
             }
-
-
-            setTimeout(() => {
-                restartGame()
-            }, 3000)
             break;
         } else {
             let playerCount = parseInt(playerScore.innerText)
@@ -367,7 +362,13 @@ async function dealerTurn() {
             if (playerCount > dealerCount) {
                 console.log('Player wins')
                 setTimeout(() => {
-                    alert(`Player count: ${playerCount}\nDealer count: ${dealerCount}\nYou win!`)
+                    modalEndGame.style.display = 'block'
+                    endGameHeading.textContent = 'You win!'
+                    playerEndScore.style.display = 'inline'
+                    dealerEndScore.style.display = 'inline'
+                    playerEndScore.textContent = `Player count: ${playerCount}`
+                    dealerEndScore.textContent = `Dealer count: ${dealerCount}`
+                    buttonEndGame.textContent = 'Continue'
                 }, 1500)
 
                 // Cash balance modifies accordingly
@@ -375,15 +376,17 @@ async function dealerTurn() {
                 let maxAmount = parseInt(document.getElementById('max-amount').textContent)
                 document.getElementById('max-amount').innerText = betAmount * 2 + maxAmount
                 document.getElementById('bet-amount').innerText = 0
-
-                setTimeout(() => {
-                    restartGame()
-                }, 3000)
                 break;
             } else if (playerCount < dealerCount) {
                 console.log('Dealer wins')
                 setTimeout(() => {
-                    alert(`Player count: ${playerCount}\nDealer count: ${dealerCount}\nDealer wins! You lose.`)
+                    modalEndGame.style.display = 'block'
+                    endGameHeading.textContent = 'You lose!'
+                    playerEndScore.style.display = 'inline'
+                    dealerEndScore.style.display = 'inline'
+                    playerEndScore.textContent = `Player count: ${playerCount}`
+                    dealerEndScore.textContent = `Dealer count: ${dealerCount}`
+                    buttonEndGame.textContent = 'Continue'
                 }, 1500)
 
                 // Lose your current bet
@@ -391,24 +394,21 @@ async function dealerTurn() {
                 if (maxAmount === 0) {
                     gameOver();
                 }
-
-                setTimeout(() => {
-                    restartGame()
-                }, 3000)
                 break;
             } else {
                 console.log('Push')
-                alert('Push.')
+                modalEndGame.style.display = 'block'
+                endGameHeading.textContent = 'Push'
+                playerEndScore.style.display = 'none'
+                dealerEndScore.style.display = 'none'
+                buttonEndGame.style.display = 'block'
+                buttonEndGame.textContent = 'Continue'
 
                 // Current bet goes back in your cash balance
                 let betAmount = parseInt(document.getElementById('bet-amount').textContent)
                 let maxAmount = parseInt(document.getElementById('max-amount').textContent)
                 document.getElementById('max-amount').innerText = betAmount + maxAmount
                 document.getElementById('bet-amount').innerText = 0
-
-                setTimeout(() => {
-                    restartGame()
-                }, 3000)
                 break;
             }
         }
@@ -442,27 +442,34 @@ async function restartGame() {
     playerScore.innerText = 0
     dealerScore.innerText = 0
     dealerScore.style.display = 'none'
+    colon.style.display = 'none'
 }
 /* This function kicks off when there are no funds available to continue the game. You'll get a message on the screen,
  * and the game fully resets with a fresh amount.
  */
 function gameOver() {
-        let maxAmount = document.getElementById('max-amount')
-        console.log('Game Over')
-        alert('Game Over! You lost all your money.')
-
-        setTimeout(() => {
-            restartGame();
-            maxAmount.innerText = 1000
-            alert('You have 1000$ to play with. Good luck!')
-        }, 3000)
-    }
+    modalEndGame.style.display = 'block'
+    endGameHeading.textContent = 'Game Over! You lost all your money!'
+    buttonGameOver.style.display = 'block'
+    buttonEndGame.style.display = 'none'
+    playerEndScore.style.display = 'none'
+    dealerEndScore.style.display = 'none'
+    console.log('Game Over')
+}
 
 
 // This section of code opens and closes the modal containing the game rules - credits to W3Schools
 // Get the modal and the button
 let modal = document.getElementsByClassName('modal-container')[0]
 let buttonRules = document.getElementsByClassName('btn-rules')[0]
+
+// Declare separate modal variables for the ending game messages
+let modalEndGame = document.getElementById('modal-end-game')
+let endGameHeading = document.getElementById('end-game-heading')
+let playerEndScore = document.getElementById('player-end-score')
+let dealerEndScore = document.getElementById('dealer-end-score')
+let buttonEndGame = document.getElementById('btn-end-game')
+let buttonGameOver = document.getElementById('btn-game-over')
 
 // Get the span that closes the modal
 let closeX = document.getElementsByClassName('close-x')[0]
@@ -475,6 +482,7 @@ function openModal() {
 // Function that closes the modal
 function closeModal() {
     modal.style.display = 'none'
+    modalEndGame.style.display = 'none'
 }
 
 // Also, function that closes the modal when you click outside the modal as well
@@ -482,4 +490,24 @@ window.onclick = function (event) {
     if (event.target === modal) {
         modal.style.display = 'none'
     }
+}
+
+function newGame() {
+    closeModal();
+    restartGame();
+}
+
+function resetGame() {
+    let maxAmount = document.getElementById('max-amount')
+    maxAmount.innerText = 1000
+
+    setTimeout(() => {
+        modalEndGame.style.display = 'block'
+        endGameHeading.textContent = 'You have 1000$ to play with. Good luck!'
+        buttonGameOver.style.display = 'none'
+        buttonEndGame.style.display = 'block'
+        buttonEndGame.textContent = 'Start'
+        playerEndScore.style.display = 'none'
+        dealerEndScore.style.display = 'none'
+    })
 }

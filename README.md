@@ -9,6 +9,9 @@ This game is destined for anyone who wants to have a little fun, and get the thr
 
 ## User Stories
 
+* As a first time user, I expect a pleasant design.
+* As a first user, I expect to have a fun experience and to play proper Blacjack.
+
 # Design
 
 ## Color Palette

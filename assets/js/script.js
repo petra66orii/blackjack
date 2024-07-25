@@ -167,12 +167,28 @@ async function deal() {
 
         // Calculate player's points
         let count = getCount(playerHand)
-        playerScore.innerText = count.highCount 
+        playerScore.innerText = count.highCount
         dealerScore.innerText = count.highCount
 
         // Log the cards to the console
         console.log('Player hand', playerHand);
         console.log('Dealer hand', dealerHand);
+
+        if (count.highCount === 21) {
+            setTimeout(() => {
+                modalEndGame.style.display = 'block'
+                endGameHeading.textContent = 'Blackjack! You win!'
+                playerEndScore.style.display = 'none'
+                dealerEndScore.style.display = 'none'
+                buttonEndGame.textContent = 'Continue'
+            }, 1500)
+
+            // Cash balance modifies accordingly
+            let betAmount = parseInt(document.getElementById('bet-amount').textContent)
+            let maxAmount = parseInt(document.getElementById('max-amount').textContent)
+            document.getElementById('max-amount').innerText = betAmount * 2 + maxAmount
+            document.getElementById('bet-amount').innerText = 0
+        }
 
     } catch (error) {
         console.log('Error dealing cards', error)

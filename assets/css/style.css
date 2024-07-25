@@ -359,4 +359,11 @@ footer {
         /* Overlap adjustment */
         margin-right: -70px;
     }
+
+    .player-area img:nth-child(6), .dealer-area img:nth-child(6) {
+        /* Puts the newer cards on top */
+        z-index: 6;
+        /* Overlap adjustment */
+        margin-right: -70px;
+    }
 }

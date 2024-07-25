@@ -239,6 +239,7 @@ async function hitMe() {
     let newCard = await drawDeck()
     playerHand.push(newCard)
     displayCard(newCard, '.player-area')
+    let maxAmount = parseInt(document.getElementById('max-amount').textContent)
 
     // Update player's score
     let count = getCount(playerHand)
@@ -255,12 +256,16 @@ async function hitMe() {
 
             // Lose your current bet
             document.getElementById('bet-amount').innerText = 0
+            if (maxAmount === 0) {
+                gameOver();
+            }
+
 
             // A timer is set so the game restarts 3 seconds after the game is over
             setTimeout(() => {
                 restartGame()
             }, 3000)
-        } else if (count.lowCount === 21) {
+        } else if (playerCount === 21) {
             console.log('Blackjack')
             alert('Blackjack! You win.')
             hitMeButton.disabled = true
@@ -319,7 +324,7 @@ async function dealerTurn() {
             // I couldn't put in a delay for the dealer to draw a card, 
             // so I had to use an await Promise function as dealerTurn is an async function - credits to W3Schools 
             await new Promise(resolve => setTimeout(resolve, 2000))
-        } else if (count.lowCount > 21) {
+        } else if (dealerCount > 21) {
             console.log('Dealer bust')
             setTimeout(() => {
                 alert('Dealer bust! You win!')
@@ -344,6 +349,11 @@ async function dealerTurn() {
 
             // Lose your current bet
             document.getElementById('bet-amount').innerText = 0
+            // Game over if you have no money left
+            if (maxAmount === 0) {
+                gameOver();
+            }
+
 
             setTimeout(() => {
                 restartGame()
@@ -378,6 +388,9 @@ async function dealerTurn() {
 
                 // Lose your current bet
                 document.getElementById('bet-amount').innerText = 0
+                if (maxAmount === 0) {
+                    gameOver();
+                }
 
                 setTimeout(() => {
                     restartGame()
@@ -430,6 +443,21 @@ async function restartGame() {
     dealerScore.innerText = 0
     dealerScore.style.display = 'none'
 }
+/* This function kicks off when there are no funds available to continue the game. You'll get a message on the screen,
+ * and the game fully resets with a fresh amount.
+ */
+function gameOver() {
+        let maxAmount = document.getElementById('max-amount')
+        console.log('Game Over')
+        alert('Game Over! You lost all your money.')
+
+        setTimeout(() => {
+            restartGame();
+            maxAmount.innerText = 1000
+            alert('You have 1000$ to play with. Good luck!')
+        }, 3000)
+    }
+
 
 // This section of code opens and closes the modal containing the game rules - credits to W3Schools
 // Get the modal and the button

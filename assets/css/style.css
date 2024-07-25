@@ -368,6 +368,25 @@ main .btn-rules:hover {
     transition: 0.4s;
 }
 
+#title-404 {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    color: #0a0908;
+}
+
+#title-404 h1 {
+    font-size: 100%;
+}
+
+#title-404 h2 {
+    font-size: 90%;
+}
+
+a:hover {
+    color: #f2f4f3;
+    transition: 0.4s;
+}
 /* Media query for screens smaller than 600px */
 @media screen and (max-width: 600px) {
 

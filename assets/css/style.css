@@ -65,7 +65,6 @@ main {
 }
 
 /* Main game area */
-
 #top-buttons {
     display: flex;
     justify-content: space-around;
@@ -97,7 +96,8 @@ main {
     z-index: 99;
 }
 
-#dealer-count, #colon {
+#dealer-count,
+#colon {
     display: none;
 }
 
@@ -105,6 +105,7 @@ hr {
     border-top: 1px solid #0a0908;
     display: block;
 }
+
 .player-area {
     width: 50%;
     height: 50%;
@@ -139,7 +140,6 @@ hr {
     margin: 9px;
 }
 
-
 .amount {
     padding: 5px;
     background-color: #9a031e;
@@ -162,7 +162,6 @@ hr {
     color: antiquewhite;
     position: relative;
     font-family: 'Kanit', Verdana, Tahoma, sans-serif;
-    /*float: right;*/
 }
 
 .buttons {
@@ -179,7 +178,8 @@ hr {
     flex: 2 0 auto;
 }
 
-.hit-div, .stay-div {
+.hit-div,
+.stay-div {
     padding: 3px;
     position: relative;
     bottom: 5px;
@@ -229,10 +229,6 @@ hr {
     font-family: 'Kanit', Verdana, Tahoma, sans-serif;
 }
 
-.btn-deal {
-    font-size: 100%;
-}
-
 main .btn:hover {
     background-color: #134e3c;
     transition: 0.4s;
@@ -255,7 +251,7 @@ footer {
     background-color: #9A031E;
 }
 
- main .btn-rules:hover {
+main .btn-rules:hover {
     background-color: #550413;
     transition: 0.4s;
 }
@@ -275,7 +271,8 @@ footer {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-.modal-content h2 {
+.modal-content h2,
+#modal-end-game h2 {
     padding-bottom: 10px;
     color: #f2f4f3;
     background-color: #9A031E;
@@ -316,13 +313,16 @@ footer {
 
 /* Media query for screens smaller than 600px */
 @media screen and (max-width: 600px) {
-    .player-area, .dealer-area {
+
+    .player-area,
+    .dealer-area {
         flex-direction: row;
         overflow-x: auto;
         width: 100%;
     }
 
-    .player-area img, .dealer-area img {
+    .player-area img,
+    .dealer-area img {
         /* This prevents the cards from shrinking */
         flex: 0 0 auto;
         /* For overlap adjustment */
@@ -332,35 +332,40 @@ footer {
         right: 40px;
     }
 
-    .player-area img:nth-child(2), .dealer-area img:nth-child(2) {
+    .player-area img:nth-child(2),
+    .dealer-area img:nth-child(2) {
         /* Puts the newer cards on top */
         z-index: 2;
         /* Overlap adjustment */
         margin-right: -70px;
     }
 
-    .player-area img:nth-child(3), .dealer-area img:nth-child(3) {
+    .player-area img:nth-child(3),
+    .dealer-area img:nth-child(3) {
         /* Puts the newer cards on top */
         z-index: 3;
         /* Overlap adjustment */
         margin-right: -70px;
     }
 
-    .player-area img:nth-child(4), .dealer-area img:nth-child(4) {
+    .player-area img:nth-child(4),
+    .dealer-area img:nth-child(4) {
         /* Puts the newer cards on top */
         z-index: 4;
         /* Overlap adjustment */
         margin-right: -70px;
     }
 
-    .player-area img:nth-child(5), .dealer-area img:nth-child(5) {
+    .player-area img:nth-child(5),
+    .dealer-area img:nth-child(5) {
         /* Puts the newer cards on top */
         z-index: 5;
         /* Overlap adjustment */
         margin-right: -70px;
     }
 
-    .player-area img:nth-child(6), .dealer-area img:nth-child(6) {
+    .player-area img:nth-child(6),
+    .dealer-area img:nth-child(6) {
         /* Puts the newer cards on top */
         z-index: 6;
         /* Overlap adjustment */

@@ -97,7 +97,7 @@ main {
     z-index: 99;
 }
 
-#dealer-count {
+#dealer-count, #colon {
     display: none;
 }
 

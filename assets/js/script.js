@@ -8,6 +8,7 @@ let stayButton = document.getElementById('stay-button')
 stayButton.disabled = true
 let playerScore = document.getElementById('player-count')
 let dealerScore = document.getElementById('dealer-count')
+let colon = document.getElementById('colon')
 
 // We'll place the focus on the bet input since that signals the start of the game
 document.addEventListener("DOMContentLoaded", function () {
@@ -299,6 +300,8 @@ async function dealerTurn() {
     hitMeButton.disabled = true
     stayButton.disabled = true
     dealerScore.style.display = 'inline'
+    colon.style.display = 'inline'
+    let maxAmount = parseInt(document.getElementById('max-amount').textContent)
 
     // To provide a better UX experience and to avoid dealer's cards getting shuffled around, 
     // I nested the conditional functions in a while loop, using break at the end of every condition

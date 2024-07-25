@@ -166,8 +166,8 @@ async function deal() {
 
         // Calculate player's points
         let count = getCount(playerHand)
-        playerScore.innerText = count.lowCount
-        dealerScore.innerText = count.lowCount
+        playerScore.innerText = count.highCount 
+        dealerScore.innerText = count.highCount
 
         // Log the cards to the console
         console.log('Player hand', playerHand);
@@ -215,7 +215,7 @@ function getCount(hand) {
 
     // Calculate highCount depending on the number of Aces
     let highCount = lowCount
-    if (aceCount > 0) {
+    if (aceCount === 1) {
         // Add 10 points for the first Ace if it doesn't bust the hand
         highCount += 10
         // If there are more than one Ace, adjust highCount accordingly 
@@ -241,12 +241,13 @@ async function hitMe() {
 
     // Update player's score
     let count = getCount(playerHand)
-    playerScore.innerText = count.lowCount
+    let playerCount = count.highCount <= 21 ? count.highCount : count.lowCount
+    playerScore.innerText = playerCount
 
     // Delay the alert messages by a second so the cards appear first
     setTimeout(() => {
-        console.log('Player count:', count.lowCount)
-        if (count.lowCount >= 22) {
+        console.log('Player count:', playerCount)
+        if (playerCount >= 22) {
             console.log('Bust')
             alert('Bust! You lose.')
             hitMeButton.disabled = true
@@ -303,10 +304,11 @@ async function dealerTurn() {
     // I nested the conditional functions in a while loop, using break at the end of every condition
     while (true) {
         let count = getCount(dealerHand)
-        dealerScore.innerText = count.lowCount
-        console.log('Dealer count:', count.lowCount)
+        let dealerCount = count.highCount <= 21 ? count.highCount : count.lowCount
+        dealerScore.innerText = dealerCount
+        console.log('Dealer count:', dealerCount)
 
-        if (count.lowCount < 17) {
+        if (dealerCount < 17) {
             let newCard = await drawDeck()
             dealerHand.push(newCard)
             displayCard(newCard, '.dealer-area')
@@ -331,7 +333,7 @@ async function dealerTurn() {
                 restartGame()
             }, 3000)
             break;
-        } else if (count.lowCount === 21) {
+        } else if (dealerCount === 21) {
             console.log('Dealer blackjack')
             setTimeout(() => {
                 alert('Dealer blackjack! You lose.')
@@ -345,8 +347,7 @@ async function dealerTurn() {
             }, 3000)
             break;
         } else {
-            let playerCount = getCount(playerHand).lowCount
-            let dealerCount = count.lowCount
+            let playerCount = parseInt(playerScore.innerText)
             console.log('Player count:', playerCount)
             console.log('Dealer count:', dealerCount)
 
@@ -382,7 +383,7 @@ async function dealerTurn() {
             } else {
                 console.log('Push')
                 alert('Push.')
-                
+
                 // Current bet goes back in your cash balance
                 let betAmount = parseInt(document.getElementById('bet-amount').textContent)
                 let maxAmount = parseInt(document.getElementById('max-amount').textContent)

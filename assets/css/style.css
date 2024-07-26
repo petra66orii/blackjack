@@ -372,21 +372,48 @@ main .btn-rules:hover {
     display: flex;
     flex-direction: column;
     align-content: center;
-    color: #0a0908;
+    color: #f2f4f3;
+    margin: 20px;
+    padding: 20px;
 }
 
 #title-404 h1 {
     font-size: 100%;
+    align-self: center;
 }
 
 #title-404 h2 {
     font-size: 90%;
+    align-self: center;
+}
+
+a {
+    color: #f2f4f3;
 }
 
 a:hover {
-    color: #f2f4f3;
+    color: #9A031E;
     transition: 0.4s;
 }
+
+#main-404 {
+    background-color: #000000;
+    height: 100vh;
+    margin: 0;
+}
+
+.hand-of-cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.hand-of-cards img {
+    width: 400px;
+    height: 300px;
+}
+
 /* Media query for screens smaller than 600px */
 @media screen and (max-width: 600px) {
 

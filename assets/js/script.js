@@ -291,6 +291,7 @@ async function hitMe() {
             modalEndGame.style.display = 'block'
             endGameHeading.textContent = 'Blackjack! You win!'
             buttonEndGame.textContent = 'Continue'
+            buttonEndGame.style.display = 'block'
             playerEndScore.style.display = 'none'
             dealerEndScore.style.display = 'none'
             buttonContinue.style.display = 'none'

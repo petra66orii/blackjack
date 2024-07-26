@@ -326,7 +326,7 @@ main .btn-rules:hover {
     margin: 10px;
 }
 
-#btn-end-game {
+#btn-end-game, #btn-continue {
     align-self: center;
     margin: 20px 10px 0 10px;
     font-size: 90%;

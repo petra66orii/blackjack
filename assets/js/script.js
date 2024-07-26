@@ -41,13 +41,18 @@ function updateBet() {
 
     // Validate the bet value to make sure 0 and/or negative numbers can't be entered
     if (isNaN(betValue) || betValue <= 0) {
-        alert('Please enter a valid bet amount.')
+        modalEndGame.style.display = 'block'
+        endGameHeading.textContent = 'Please enter a valid bet amount.'
+        buttonContinue.style.display = 'block'
+        buttonEndGame.style.display = 'none'
         return
     }
 
     // Validate the bet as well to ensure you can't bet more than the actual money you've available
     if (betValue > maxValue) {
-        alert('You can\'t bet what you don\'t have.')
+        modalEndGame.style.display = 'block'
+        endGameHeading.textContent = 'You can\'t bet what you don\'t have.'
+        buttonContinue.style.display = 'block'
         return
     }
 
@@ -180,6 +185,7 @@ async function deal() {
                 endGameHeading.textContent = 'Blackjack! You win!'
                 playerEndScore.style.display = 'none'
                 dealerEndScore.style.display = 'none'
+                buttonContinue.style.display = 'none'
                 buttonEndGame.textContent = 'Continue'
             }, 1500)
 
@@ -272,6 +278,7 @@ async function hitMe() {
             buttonEndGame.textContent = 'Continue'
             playerEndScore.style.display = 'none'
             dealerEndScore.style.display = 'none'
+            buttonContinue.style.display = 'none'
             hitMeButton.disabled = true
 
             // Lose your current bet
@@ -286,6 +293,7 @@ async function hitMe() {
             buttonEndGame.textContent = 'Continue'
             playerEndScore.style.display = 'none'
             dealerEndScore.style.display = 'none'
+            buttonContinue.style.display = 'none'
             hitMeButton.disabled = true
 
             // Cash balance modifies accordingly
@@ -344,6 +352,7 @@ async function dealerTurn() {
                 endGameHeading.textContent = 'Dealer bust! You win!'
                 playerEndScore.style.display = 'none'
                 dealerEndScore.style.display = 'none'
+                buttonContinue.style.display = 'none'
                 buttonEndGame.textContent = 'Continue'
             }, 1500)
 
@@ -360,6 +369,7 @@ async function dealerTurn() {
                 endGameHeading.textContent = ' Dealer Blackjack! You lose.'
                 playerEndScore.style.display = 'none'
                 dealerEndScore.style.display = 'none'
+                buttonContinue.style.display = 'none'
                 buttonEndGame.textContent = 'Continue'
             }, 1500)
 
@@ -385,6 +395,7 @@ async function dealerTurn() {
                     playerEndScore.textContent = `Player count: ${playerCount}`
                     dealerEndScore.textContent = `Dealer count: ${dealerCount}`
                     buttonEndGame.textContent = 'Continue'
+                    buttonContinue.style.display = 'none'
                 }, 1500)
 
                 // Cash balance modifies accordingly
@@ -403,6 +414,7 @@ async function dealerTurn() {
                     playerEndScore.textContent = `Player count: ${playerCount}`
                     dealerEndScore.textContent = `Dealer count: ${dealerCount}`
                     buttonEndGame.textContent = 'Continue'
+                    buttonContinue.style.display = 'none'
                 }, 1500)
 
                 // Lose your current bet
@@ -419,6 +431,7 @@ async function dealerTurn() {
                 dealerEndScore.style.display = 'none'
                 buttonEndGame.style.display = 'block'
                 buttonEndGame.textContent = 'Continue'
+                buttonContinue.style.display = 'none'
 
                 // Current bet goes back in your cash balance
                 let betAmount = parseInt(document.getElementById('bet-amount').textContent)
@@ -470,6 +483,7 @@ function gameOver() {
     buttonEndGame.style.display = 'none'
     playerEndScore.style.display = 'none'
     dealerEndScore.style.display = 'none'
+    buttonContinue.style.display = 'none'
     console.log('Game Over')
 }
 
@@ -486,6 +500,7 @@ let playerEndScore = document.getElementById('player-end-score')
 let dealerEndScore = document.getElementById('dealer-end-score')
 let buttonEndGame = document.getElementById('btn-end-game')
 let buttonGameOver = document.getElementById('btn-game-over')
+let buttonContinue = document.getElementById('btn-continue')
 
 // Get the span that closes the modal
 let closeX = document.getElementsByClassName('close-x')[0]

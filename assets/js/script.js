@@ -254,7 +254,7 @@ function getCount(hand) {
 
 /* This function draws a new card until you either you decide to stay, you bust or win by getting blackjack.  
  * If you win by getting blackjack or bust and lose, the game will automatically restart. You either earn or lose
- * your bet depending on the outcome. The function uses the lowCount property from the getCount() function to 
+ * your bet depending on the outcome. The function uses the lowCount/highCount properties from the getCount() function to 
  * determine if it is a winning hand or not. 
  */
 async function hitMe() {

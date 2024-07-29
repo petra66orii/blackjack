@@ -106,7 +106,8 @@ function createDeck() {
 }
 
 /* This function will draw two cards for both the player and the dealer (PC) by making an API
- * request using the same API from above. Credits are in the README.md
+ * request using the same API from above. This snippet of code was used and adapted from a
+ * Medium Bootcamp publication article that is linked in the README. 
  */
 async function drawDeck() {
     let drawCard = `https://www.deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`
@@ -144,7 +145,7 @@ function displayCard(card, classArea) {
 }
 
 /* This function will deal and output two cards for both players. Credits are due to W3Schools and their
- * tutorial on async and await functions.
+ * tutorial on async and await functions. 
  */
 async function deal() {
     if (!deckId) {
@@ -184,6 +185,7 @@ async function deal() {
         console.log('Player hand', playerHand);
         console.log('Dealer hand', dealerHand);
 
+        // Conditional function if player hits Blackjack with the first two cards dealt
         if (count.highCount === 21) {
             setTimeout(() => {
                 displayMessage('Blackjack! You win!')
@@ -216,7 +218,9 @@ function displayBackCard(classArea) {
 
 /**
  * This function will count the points on each of the player's hands, while taking into account the number of Aces
- * that are drawn, and then return the counts, which will then be used to determine the winner.
+ * that are drawn, and then return the counts, which will then be used to determine the winner. This function was inspired
+ * from an article by Raymond Camden, the main takeaways were creating new properties like lowCount and highCount that
+ * are calculating the points for Aces based on the cards output. Article is linked in the README.
  * @param {playerHand or dealerHand} hand 
  * @returns lowCount, highCount properties
  */
@@ -246,6 +250,7 @@ function getCount(hand) {
             highCount -= 10
         }
     }
+    // Two new properties are created that are used in the subsequent functions
     return {
         lowCount,
         highCount
@@ -265,6 +270,7 @@ async function hitMe() {
 
     // Update player's score
     let count = getCount(playerHand)
+    // Newly created properties are put to use
     let playerCount = count.highCount <= 21 ? count.highCount : count.lowCount
     playerScore.innerText = playerCount
 
@@ -293,7 +299,7 @@ async function hitMe() {
     }, 1000)
 }
 
-/* This function reveals the dealer's card when the player stays
+/* This function reveals the dealer's card once the player decides to stay
  */
 function revealDealerCard() {
     let flipCardImg = document.getElementById('back-card')
@@ -317,8 +323,10 @@ async function dealerTurn() {
     colon.style.display = 'inline'
     let maxAmount = parseInt(document.getElementById('max-amount').textContent)
 
-    // To provide a better UX experience and to avoid dealer's cards getting shuffled around, 
-    // I nested the conditional functions in a while loop, using break at the end of every condition
+    /* To provide a better UX experience and to avoid dealer's cards getting shuffled around, 
+     * I nested the conditional functions in a while loop, using break at the end of every condition - idea inspired from 
+     * Raymond Camden's article (link in the README) 
+     */
     while (true) {
         let count = getCount(dealerHand)
         let dealerCount = count.highCount <= 21 ? count.highCount : count.lowCount
@@ -366,6 +374,7 @@ async function dealerTurn() {
             if (playerCount > dealerCount) {
                 console.log('Player wins')
                 setTimeout(() => {
+                    // Displays message and the final scores
                     displayMessage('You win!', true, true)
                     playerEndScore.textContent = `Player count: ${playerCount}`
                     dealerEndScore.textContent = `Dealer count: ${dealerCount}`
@@ -380,6 +389,7 @@ async function dealerTurn() {
             } else if (playerCount < dealerCount) {
                 console.log('Dealer wins')
                 setTimeout(() => {
+                    // Displays message and the player scores
                     displayMessage('You lose!', true, true)
                     playerEndScore.textContent = `Player count: ${playerCount}`
                     dealerEndScore.textContent = `Dealer count: ${dealerCount}`
@@ -436,8 +446,8 @@ async function restartGame() {
     colon.style.display = 'none'
 }
 
-/* This function kicks off when there are no funds available to continue the game. You'll get a message on the screen,
- * and the game fully resets with a fresh amount.
+/* This function kicks off when there are no funds available to continue the game. The message is being displayed 
+ * the player is informed that there's no money left.
  */
 function gameOver() {
     modalEndGame.style.display = 'block'
@@ -456,7 +466,7 @@ function gameOver() {
 let modal = document.getElementsByClassName('modal-container')[0]
 let buttonRules = document.getElementsByClassName('btn-rules')[0]
 
-// Declare separate modal variables for the ending game messages
+// Declare separate global variables for the ending game messages in the modal container
 let modalEndGame = document.getElementById('modal-end-game')
 let endGameHeading = document.getElementById('end-game-heading')
 let playerEndScore = document.getElementById('player-end-score')
@@ -504,11 +514,15 @@ window.onclick = function (event) {
     }
 }
 
+/* This function closes the modal contaier from the previous game and restarts the game
+ */
 function newGame() {
     closeModal();
     restartGame();
 }
 
+/* This function resets the game should the player run out of money
+ */
 function resetGame() {
     let maxAmount = document.getElementById('max-amount')
     maxAmount.innerText = 1000
@@ -521,5 +535,5 @@ function resetGame() {
         buttonEndGame.textContent = 'Start'
         playerEndScore.style.display = 'none'
         dealerEndScore.style.display = 'none'
-    })
+    }, 1500)
 }

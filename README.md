@@ -98,6 +98,9 @@ For the font I went with a simple Kanit font that stands out and it's elegant.
 
 The cards images were taken from the [Deck of Cards API](https://www.deckofcardsapi.com/) and displayed with the help of JavaScript. The back card image was from the same website.
 
+![Back card](assets/images/back-card.png)
+![Five of Spades](assets/images/documentation/card.png)
+![King of Hearts](assets/images/documentation/card2.png)
 ## Wireframes
 
 This initial design was made using Balsamiq. The mobile design is aiming to contain everything without scrolling down or with minimal scrolling, and the same idea is kept in mind while designing the desktop version.
@@ -294,8 +297,12 @@ The CSS was validated using the official CSS Jigsaw validator.
 
 * **No errors came up while testing the JavaScript code.**
 
-* There are a good few warnings, most of them are because of missing semicolons, but should be fixed now.
+* There were a good few warnings, most of them because of missing semicolons, but it should be fixed now.
 * There are also warnings regarding the use of functions that are declared outside of loops that can cause confusion. Whilst a bit annoying to see it there, it does not affect the game and I am happy to leave it as is.
+* Another warning is regarding the use of async functions being used from ES8 onwards; again, it does not affect the performance of the game, and I'm happy to leave it as is. 
+
+![JSHint Validator](assets/images/documentation/jshint-validator.png)
+
 
 ### Lighthouse
 

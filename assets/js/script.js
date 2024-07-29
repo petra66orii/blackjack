@@ -53,6 +53,7 @@ function updateBet() {
         modalEndGame.style.display = 'block'
         endGameHeading.textContent = 'You can\'t bet what you don\'t have.'
         buttonContinue.style.display = 'block'
+        buttonEndGame.style.display = 'none'
         return
     }
 

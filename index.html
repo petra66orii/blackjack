@@ -28,10 +28,11 @@
         <div id="top-buttons">
             <!--Opens the modal container-->
             <button class="btn btn-rules" onclick="openModal()">How to Play</button>
+            <!--Div shows the user what balance is available-->
             <div class="amount">Amount Available: <span id="max-amount">1000</span>$</div>
         </div>
         <!--Game Area-->
-        <div class="game-area">
+        <section class="game-area">
             <h2 id="player-title">Player: <span id="player-count">0</span></h2>
             <div class="player-area">
             </div>
@@ -39,10 +40,10 @@
             <h2 id="dealer-title">Dealer<span id="colon">:</span> <span id="dealer-count">0</span></h2>
             <div class="dealer-area">
             </div>
-        </div>
+        </section>
         <div id="current-bet" class="bets">Current bet: <span id="bet-amount">0</span>$</div>
         <!--Buttons Area-->
-        <div class="buttons">
+        <section class="buttons">
             <div class="hit-div">
                 <button class="btn btn-hit" id="hit-me-button" onclick="hitMe()">Hit</button>
             </div>
@@ -54,8 +55,8 @@
             <div class="stay-div">
                 <button class="btn btn-stay" id="stay-button" onclick="dealerTurn()">Stay</button>
             </div>
-        </div>
-        <!--Modal container section - credits to W3Schools for the tutorial on how to code one-->
+        </section>
+        <!--Modal container section for "How to Play" - credits to W3Schools for the tutorial on how to code one-->
         <div class="modal-container">
             <div class="modal-content">
                 <!--The span is the "x" that will close the modal window-->
@@ -75,6 +76,7 @@
                     in an automatic win if it is in the player's initial deal.</p>
             </div>
         </div>
+        <!--This section is where the endgame messages are displayed - credits to W3Schools on modal container tutorial-->
         <div id="modal-end-game">
             <div class="modal-content-end">
                 <h2 id="end-game-heading">Game Over</h2>
@@ -86,9 +88,6 @@
             </div>
         </div>
     </main>
-    <!--Footer-->
-    <footer>
-    </footer>
     <!--JavaScript page-->
     <script src="assets/js/script.js"></script>
 </body>

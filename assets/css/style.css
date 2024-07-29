@@ -57,8 +57,8 @@ h1 {
 /* Main content */
 main {
     flex: 1 0 auto;
+    /* Main content starts where the header ends */
     margin-top: 39px;
-    margin-bottom: 40px;
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
@@ -82,6 +82,7 @@ main {
     align-self: center;
     display: flex;
     justify-content: space-evenly;
+    /* Ensures the game area will remain the largest section on any screen */
     flex: 3 0 auto;
     flex-flow: column wrap;
 }
@@ -96,6 +97,7 @@ main {
     z-index: 99;
 }
 
+/* Dealer count and colon stay hidden until dealer's turn comes */
 #dealer-count,
 #colon {
     display: none;
@@ -210,6 +212,7 @@ hr {
     width: 40%;
 }
 
+/* Bet input field disappears since there is no use for it after a bet is placed */
 .betting-sums input:disabled {
     display: none;
 }
@@ -232,18 +235,6 @@ hr {
 main .btn:hover {
     background-color: #0f382c;
     transition: 0.4s;
-}
-
-/* Footer */
-footer {
-    position: fixed;
-    bottom: 0;
-    display: none;
-    justify-content: center;
-    flex-direction: row;
-    background-color: #f2f4f3;
-    width: 100%;
-    height: 40px;
 }
 
 /* How to play button */
@@ -291,6 +282,7 @@ main .btn-rules:hover {
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #f2f4f3;
+    border-radius: 5px;
     width: 80%;
     font-family: 'Kanit', Verdana, Tahoma, sans-serif;
 }
@@ -326,7 +318,8 @@ main .btn-rules:hover {
     margin: 10px;
 }
 
-#btn-end-game, #btn-continue {
+#btn-end-game,
+#btn-continue {
     align-self: center;
     margin: 20px 10px 0 10px;
     font-size: 90%;
@@ -415,6 +408,7 @@ a:hover {
 }
 
 /* Media query for screens smaller than 600px */
+/* This media query stacks cards on top of each other while allowing the player to still see the previous cards drawn */
 @media screen and (max-width: 600px) {
 
     .player-area,
@@ -471,6 +465,14 @@ a:hover {
     .dealer-area img:nth-child(6) {
         /* Puts the newer cards on top */
         z-index: 6;
+        /* Overlap adjustment */
+        margin-right: -70px;
+    }
+
+    .player-area img:nth-child(7),
+    .dealer-area img:nth-child(7) {
+        /* Puts the newer cards on top */
+        z-index: 7;
         /* Overlap adjustment */
         margin-right: -70px;
     }

@@ -45,6 +45,8 @@ function updateBet() {
         endGameHeading.textContent = 'Please enter a valid bet amount.'
         buttonContinue.style.display = 'block'
         buttonEndGame.style.display = 'none'
+        // Input field resets
+        betInput.value = ''
         return
     }
 
@@ -54,6 +56,8 @@ function updateBet() {
         endGameHeading.textContent = 'You can\'t bet what you don\'t have.'
         buttonContinue.style.display = 'block'
         buttonEndGame.style.display = 'none'
+        // Input field resets
+        betInput.value = ''
         return
     }
 
